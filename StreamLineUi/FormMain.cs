@@ -125,7 +125,5 @@ namespace StreamLineUi
 
             panelNavigationBackground.Size = new Size(width, panelNavigationBackground.Height);
         }
-
-        private int event_RetrieveNavigate
     }
 }

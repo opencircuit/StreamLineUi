@@ -187,35 +187,11 @@ namespace StreamLineUi
                 if (!executionInProgress) { break; }
                 string testCaseID = (string)testCaseList[rowIndex];
                 Process process = event_InitiateJarProcess(testCaseID, scriptName);
-                //event_RandomUpdate(testCaseID);
                 event_MonitorProcessStatus(process);
                 event_UpdateTestCaseStatus(rowIndex, testCaseID);
                 Invoke(gridviewDelegate);
             }
         }
-
-        //*****************************
-
-        //private Random random = new Random();
-
-        //private void event_RandomUpdate(string testCaseID)
-        //{
-        //    var names = new List<string> { "Skipped", "Passed", "Failed" };
-        //    string status = names[random.Next(names.Count)];
-        //    string query1 = "UPDATE [Main] SET [Status] = '" + status + "' " +
-        //        "WHERE [Execution_ID] = '" + formMain.settingsInfo["ExecutionID"] + "' " +
-        //        "AND [Test_Case_ID] = '" + testCaseID + "'";
-
-        //    resultsDatabase.event_ExecuteNonSelectQuery(query1);
-
-        //    string query2 = "UPDATE [Main] SET [Execution_Time] = '" + random.Next(1, 30) + "' " +
-        //        "WHERE [Execution_ID] = '" + formMain.settingsInfo["ExecutionID"] + "' " +
-        //        "AND [Test_Case_ID] = '" + testCaseID + "'";
-
-        //    resultsDatabase.event_ExecuteNonSelectQuery(query2);
-        //}
-
-        //*****************************
 
         private Process event_InitiateJarProcess(string testCaseID, string scriptName)
         {
@@ -233,7 +209,7 @@ namespace StreamLineUi
             processInfo.CreateNoWindow = true;
             processInfo.FileName = "java.exe";
             processInfo.Arguments = processArguments.ToString();
-            processInfo.WindowStyle = ProcessWindowStyle.Normal;
+            processInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo = processInfo;
 
             return process;
