@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -9,140 +7,119 @@ namespace StreamLineUi
 {
     public partial class ControlSettings : UserControl
     {
-        private Common common = new Common();
         private FormMain formMain;
+        private Common common;
 
-        private Dictionary<string, string> settingsDictionary;
-        private Color uiColor;
-
-        public ControlSettings(FormMain formMain, Dictionary<string, string> settingsDictionary)
+        public ControlSettings(FormMain formMain)
         {
             InitializeComponent();
             this.formMain = formMain;
-            this.settingsDictionary = settingsDictionary;
+            common = new Common();
         }
 
         private void action_FormLoad(object sender, EventArgs e)
         {
-            initialize_ChooseUiColor();
-            initialize_ChangeUiColor();
+            initialize_GenerateDefaultSettingsXml();
             initialize_LoadSettings();
+            initialize_CreateDirectories();
+            initialize_VerifyResourcesExist();
+            initialize_DisplaySettingsInformation();
+            initialize_SetUiColorSelection();
+            event_ChangeUiColor();
+            event_InitializeDropdownValues();
+
         }
 
-        private void action_SelectScriptsDirectory(object sender, EventArgs e)
+        private void action_SelectDirectory(object sender, EventArgs e)
         {
-            dialogBrowseForFolder.ShowDialog();
-            textboxScriptsDirectory.Text = dialogBrowseForFolder.SelectedPath;
-        }
+            if (browseDirectory.ShowDialog() != DialogResult.OK) { return; }
 
-        private void action_DefaultScriptsDirectory(object sender, EventArgs e)
-        {
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string resourceDirectory = currentDirectory + "\\Resources";
-            string scriptsDirectory = resourceDirectory + "\\Scripts";
-            textboxScriptsDirectory.Text = scriptsDirectory;
-        }
+            Button button = (Button)sender;
 
-        private void action_SelectTestDatabaseDirectory(object sender, EventArgs e)
-        {
-            dialogBrowseForFolder.ShowDialog();
-            textboxTestDatabaseDirectory.Text = dialogBrowseForFolder.SelectedPath;
-            string testDatabaseDirectory = textboxTestDatabaseDirectory.Text;
-            string testDatabaseName = "TestCaseData.db";
-            string projectName = "StreamLineUi";
-
-            if (!File.Exists(testDatabaseDirectory + "\\TestCaseData.db")) {
-                MessageBox.Show("No test database found in the selected directory. One will be created now.");
-                common.event_ExtractEmbeddedResource(projectName, testDatabaseName, testDatabaseDirectory);
+            if (button.Text.Equals("Select Results Directory")) {
+                textboxResultsDirectory.Text = browseDirectory.SelectedPath;
             }
-        }
-
-        private void action_DefaultTestDatabaseDirectory(object sender, EventArgs e)
-        {
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string resourceDirectory = currentDirectory + "\\Resources";
-            string testDatabaseDirectory = resourceDirectory + "\\Databases";
-            textboxTestDatabaseDirectory.Text = testDatabaseDirectory;
-        }
-
-        private void action_SelectResultsDatabaseDirectory(object sender, EventArgs e)
-        {
-            dialogBrowseForFolder.ShowDialog();
-            textboxResultsDatabaseDirectory.Text = dialogBrowseForFolder.SelectedPath;
-            string resultsDatabaseDirectory = textboxResultsDatabaseDirectory.Text;
-            string resultsDatabaseName = "TestCaseResults.db";
-            string projectName = "StreamLineUi";
-
-            if (!File.Exists(resultsDatabaseDirectory + "\\TestCaseResults.db")) {
-                MessageBox.Show("No results database found in the selected directory. One will be created now.");
-                common.event_ExtractEmbeddedResource(projectName, resultsDatabaseName, resultsDatabaseDirectory);
+            else if (button.Text.Equals("Select Scripts Directory")) {
+                textboxScriptsDirectory.Text = browseDirectory.SelectedPath;
             }
+
+            event_InitializeDropdownValues();
         }
 
-        private void action_DefaultResultsDatabaseDirectory(object sender, EventArgs e)
+        private void action_ConnectToDatabase(object sender, EventArgs e)
         {
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string resourceDirectory = currentDirectory + "\\Resources";
-            string resultsDatabaseDirectory = resourceDirectory + "\\Databases";
-            textboxResultsDatabaseDirectory.Text = resultsDatabaseDirectory;
+            if (dropdownDatabases.Text.Length == 0) { return; }
+            event_SaveSettings();
+            event_EnableSettingsControls(true);
+            formMain.event_EnableAllControlButtons(true);
         }
 
-        private void action_SelectResultsFileDirectory(object sender, EventArgs e)
+        private void action_CreateScript(object sender, EventArgs e)
         {
-            dialogBrowseForFolder.ShowDialog();
-            textboxResultsFileDirectory.Text = dialogBrowseForFolder.SelectedPath;
+            string scriptName = event_RetrieveScriptName("Create Script && Database");
+            if (scriptName.Length == 0) { return; }
+            if (dropdownDatabases.FindStringExact(scriptName) >= 0) {
+                MessageBox.Show("This script & database already exists.");
+                return;
+            }
+
+            string scriptDirectory = formMain.settingsInfo["ScriptsDirectory"] + "\\" + scriptName;
+            Directory.CreateDirectory(scriptDirectory + "\\Components");
+
+            common.event_ExtractResource("TestCaseData.db", scriptDirectory);
+            common.event_ExtractResource("TestCaseResults.db", scriptDirectory);
+            common.event_ExtractResource("sqlite3.exe", scriptDirectory);
+            common.event_ExtractResource("Script.xml", scriptDirectory);
+            common.event_ExtractResource("InitialLandingPage.xml", scriptDirectory + "\\Components");
+            dropdownDatabases.Items.Add(scriptName);
+
+            MessageBox.Show("Scirpt & database has been created.");
         }
 
-        private void action_DefaultResultsFileDirectory(object sender, EventArgs e)
+        private void action_DeleteScript(object sender, EventArgs e)
         {
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string resourceDirectory = currentDirectory + "\\Resources";
-            string resultsFileDirectory = resourceDirectory + "\\Results";
-            textboxResultsFileDirectory.Text = resultsFileDirectory;
-        }
+            string scriptName = event_RetrieveScriptName("Delete Script && Database");
+            if (scriptName.Length == 0) { return; }
+            if (scriptName.Equals(formMain.settingsInfo["ScriptName"])) {
+                MessageBox.Show("Cannot delete currently connected script & database.");
+                return;
+            }
 
-        private void action_ResetResultsDatabase(object sender, EventArgs e)
-        {
-            string projectName = "StreamLineUi";
-            string resultsDatabaseDirectory = settingsDictionary["ResultsDatabaseDirectory"];
-            string resultsDatabasePath = resultsDatabaseDirectory + "\\TestCaseResults.db";
+            string scriptDirectory = formMain.settingsInfo["ScriptsDirectory"] + "\\" + scriptName;
 
-            File.Delete(resultsDatabasePath);
-            common.event_ExtractEmbeddedResource(projectName, "TestCaseResults.db", resultsDatabaseDirectory);
-        }
+            if (!Directory.Exists(scriptDirectory)) {
+                MessageBox.Show("Script & datbase could not be deleted. It does not exist.");
+                return;
+            }
 
-        private void action_ResetTestDatabase(object sender, EventArgs e)
-        {
-            string projectName = "StreamLineUi";
-            string testCaseDatabaseDirectory = settingsDictionary["TestDatabaseDirectory"];
-            string testCaseDatabasePath = testCaseDatabaseDirectory + "\\TestCaseData.db";
-
-            File.Delete(testCaseDatabasePath);
-            common.event_ExtractEmbeddedResource(projectName, "TestCaseData.db", testCaseDatabaseDirectory);
+            event_DeleteAllDirectoryFiles(scriptDirectory);
+            dropdownDatabases.Items.Remove(scriptName);
+            MessageBox.Show("Scirpt & database has been deleted.");
         }
 
         private void action_ClearTestDatabase(object sender, EventArgs e)
         {
-            string testCaseDatabaseDirectory = settingsDictionary["TestDatabaseDirectory"];
-            string testCaseDatabase = testCaseDatabaseDirectory + "\\TestCaseData.db";
-            DatabaseConnector database = new DatabaseConnector(testCaseDatabase);
+            ArrayList tableList = formMain.testDatabase.event_RetrieveTableList();
 
-            ArrayList tableList = database.event_RetrieveTableList();
-            tableList.Remove("");
+            foreach (string tableName in tableList) {
+                string query = "DELETE FROM [" + tableName + "] WHERE [Test_Case_ID] != 'Default'";
+                formMain.testDatabase.event_ExecuteNonSelectQuery(query);
+            }
+        }
 
-            database.event_ClearDatabase(tableList);
+        private void action_ResetTestDatabase(object sender, EventArgs e)
+        {
+            event_ResetDatabase("TestCaseData.db");
+        }
+
+        private void action_ResetResultsDatabase(object sender, EventArgs e)
+        {
+            event_ResetDatabase("TestCaseResults.db");
         }
 
         private void action_SaveSettings(object sender, EventArgs e)
         {
-            event_CollectSettingsData();
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string setupDirectory = currentDirectory + "\\Resources\\Setup";
-            string filePath = setupDirectory + "\\Settings.xml";
-            common.event_GenerateXml(settingsDictionary, filePath, "Settings");
-
-            string selectedColor = settingsDictionary["UiColor"];
-            formMain.initialize_ChangeUiColor(selectedColor);
+            event_SaveSettings();
         }
     }
 }

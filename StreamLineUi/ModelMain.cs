@@ -1,216 +1,184 @@
-﻿using MaterialSkin.Controls;
-using System.Collections.Generic;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace StreamLineUi
 {
-    internal class ModelMain
-    {
-    }
+    internal class ModelMain { }
 
     public partial class FormMain : MaterialForm
     {
-        private void initialize_CreatePrimaryDirectories()
-        {
-            string resourceDirectory = common.event_GetCurrentDirectory() + "\\Resources";
-            string databaseDirectory = resourceDirectory + "\\Databases";
-            string resultsDirectory = resourceDirectory + "\\Results";
-            string scriptsDirectory = resourceDirectory + "\\Scripts";
-            string setupDirectory = resourceDirectory + "\\Setup";
+        //***************************************************************************************************************
+        // Initial Setup Methods
+        //***************************************************************************************************************
 
-            common.event_CreateDirectory(resourceDirectory);
-            common.event_CreateDirectory(databaseDirectory);
-            common.event_CreateDirectory(resultsDirectory);
-            common.event_CreateDirectory(scriptsDirectory);
-            common.event_CreateDirectory(setupDirectory);
+
+
+        internal void event_ChangeUiColor(string uiColor)
+        {
+            Color color = common.event_RetrieveUiColor(uiColor);
+            event_ChangeNavigationButtonAccent(color);
+            event_ChangeButtonColor(color);
+            event_ChangeMaterialFormAccent(uiColor);
         }
 
-        private void initialize_GenerateDefaultSettingsXml()
+        private void event_ChangeNavigationButtonAccent(Color color)
         {
-            string resourceDirectory = common.event_GetCurrentDirectory() + "\\Resources";
-            string settingsFile = resourceDirectory + "\\Setup\\Settings.xml";
-            if (File.Exists(settingsFile)) { return; }
-
-            string scriptsDirectory = resourceDirectory + "\\Scripts";
-            string databaseDirectory = resourceDirectory + "\\Databases";
-            string resultsDirectory = resourceDirectory + "\\Results";
-
-            Dictionary<string, string> defaultSettingsValues;
-            defaultSettingsValues = new Dictionary<string, string>();
-
-            defaultSettingsValues.Add("ScriptsDirectory", scriptsDirectory);
-            defaultSettingsValues.Add("TestDatabaseDirectory", databaseDirectory);
-            defaultSettingsValues.Add("ResultsDatabaseDirectory", databaseDirectory);
-            defaultSettingsValues.Add("ResultsFileDirectory", resultsDirectory);
-            defaultSettingsValues.Add("UiColor", "");
-
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string setupDirectory = currentDirectory + "\\Resources\\Setup";
-            string filePath = setupDirectory + "\\Settings.xml";
-            common.event_GenerateXml(defaultSettingsValues, filePath, "Settings");
+            panelAccentDashboard.BackColor = color;
+            panelAccentScriptEditor.BackColor = color;
+            panelAccentComponentEditor.BackColor = color;
+            panelAccentDataGenerator.BackColor = color;
+            panelAccentDataEditor.BackColor = color;
+            panelAccentDatabaseEditor.BackColor = color;
+            panelAccentConfiguration.BackColor = color;
+            panelAccentSettings.BackColor = color;
         }
 
-        private void initialize_LoadSettings()
+        private void event_ChangeButtonColor(Color color)
         {
-            string resourceDirectory = common.event_GetCurrentDirectory() + "\\Resources";
-            string settingsFilePath = resourceDirectory + "\\Setup\\Settings.xml";
-            settingsDictionary = new Dictionary<string, string>();
-
-            XmlNodeList primaryNodes;
-            primaryNodes = common.event_LoadXmlPrimaryNodes(settingsFilePath, "Settings");
-            initialize_SettingsValuesAnalysis(primaryNodes);
+            common.event_ChangeButtonColor(buttonDashboard, color);
+            common.event_ChangeButtonColor(buttonScriptEditor, color);
+            common.event_ChangeButtonColor(buttonComponentBuilder, color);
+            common.event_ChangeButtonColor(buttonDataGenerator, color);
+            common.event_ChangeButtonColor(buttonDataEditor, color);
+            common.event_ChangeButtonColor(buttonDatabaseEditor, color);
+            common.event_ChangeButtonColor(buttonConfiguration, color);
+            common.event_ChangeButtonColor(buttonSettings, color);
         }
 
-        private void initialize_SettingsValuesAnalysis(XmlNodeList primaryNodes)
+        private void event_ChangeMaterialFormAccent(string uiColor)
         {
-            XmlNode settingsNode = primaryNodes[0];
+            Accent accent;
 
-            string scriptsDirectory = settingsNode["ScriptsDirectory"].InnerText;
-            string testDatabaseDirectory = settingsNode["TestDatabaseDirectory"].InnerText;
-            string resultsDatabaseDirectory = settingsNode["ResultsDatabaseDirectory"].InnerText;
-            string resultsFileDirectory = settingsNode["ResultsFileDirectory"].InnerText;
-            string colorSelection = settingsNode["UiColor"].InnerText;
+            if (uiColor.Equals("Blue")) { accent = Accent.LightBlue400; }
+            else if (uiColor.Equals("Orange")) { accent = Accent.Orange400; }
+            else if (uiColor.Equals("Green")) { accent = Accent.Green700; }
+            else if (uiColor.Equals("Purple")) { accent = Accent.Purple700; }
+            else if (uiColor.Equals("Pink")) { accent = Accent.Pink100; }
+            else if (uiColor.Equals("Crimson")) { accent = Accent.Red700; }
+            else if (uiColor.Equals("Teal")) { accent = Accent.Teal700; }
+            else { accent = Accent.LightBlue100; }
 
-            settingsDictionary.Add("ScriptsDirectory", scriptsDirectory);
-            settingsDictionary.Add("TestDatabaseDirectory", testDatabaseDirectory);
-            settingsDictionary.Add("ResultsDatabaseDirectory", resultsDatabaseDirectory);
-            settingsDictionary.Add("ResultsFileDirectory", resultsFileDirectory);
-            settingsDictionary.Add("UiColor", colorSelection);
+            //Configure Color Schema
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Grey900, Primary.Grey900,
+                Primary.Grey900, accent,
+                TextShade.WHITE
+            );
         }
 
-        private void initialize_CreateSettingsDirectories()
+        private void initialize_UserComputerName()
         {
-            common.event_CreateDirectory(settingsDictionary["ScriptsDirectory"]);
-            common.event_CreateDirectory(settingsDictionary["TestDatabaseDirectory"]);
-            common.event_CreateDirectory(settingsDictionary["ResultsDatabaseDirectory"]);
-            common.event_CreateDirectory(settingsDictionary["ResultsFileDirectory"]);
+            labelComputerName.Text = common.event_GetComputerName();
         }
 
-        private void initialize_VerifyResourcesExist()
+        private void initialize_SettingsControl()
         {
-            string currentDirectory = common.event_GetCurrentDirectory();
-            string resourceDirectory = currentDirectory + "\\Resources";
-            string setupDirectory = resourceDirectory + "\\Setup";
-            string testDatabaseDirectory = settingsDictionary["TestDatabaseDirectory"];
-            string resultsDatabaseDirectory = settingsDictionary["ResultsDatabaseDirectory"];
-
-            string projectName = "StreamLineUi";
-
-            if (!File.Exists(setupDirectory + "\\ScriptBuilderOptions.xml")) {
-                common.event_ExtractEmbeddedResource(projectName, "ScriptBuilderOptions.xml", setupDirectory);
-            }
-
-            if (!File.Exists(testDatabaseDirectory + "\\TestCaseData.db")) {
-                common.event_ExtractEmbeddedResource(projectName, "TestCaseData.db", testDatabaseDirectory);
-            }
-
-            if (!File.Exists(resultsDatabaseDirectory + "\\TestCaseResults.db")) {
-                common.event_ExtractEmbeddedResource(projectName, "TestCaseResults.db", resultsDatabaseDirectory);
-            }
-
-            if (!File.Exists(currentDirectory + "\\StreamLineEngine.jar")) {
-                common.event_ExtractEmbeddedResource(projectName, "StreamLineEngine.jar", currentDirectory);
-            }
+            settings = new ControlSettings(this);
+            buttonSettings.Enabled = true;
         }
 
-        internal void initialize_ChangeUiColor(string selectedColor)
-        {
-            uiColor = common.event_RetrieveSpecifiedColor(selectedColor);
 
-            panelAccentDashboard.BackColor = uiColor;
-            panelAccentScriptBuilder.BackColor = uiColor;
-            panelAccentDataEditor.BackColor = uiColor;
-            panelAccentConfiguration.BackColor = uiColor;
-            panelAccentSettings.BackColor = uiColor;
 
-            buttonDashboard.FlatAppearance.MouseDownBackColor = uiColor;
-            buttonScriptBuilder.FlatAppearance.MouseDownBackColor = uiColor;
-            buttonDataEditor.FlatAppearance.MouseDownBackColor = uiColor;
-            buttonConfiguration.FlatAppearance.MouseDownBackColor = uiColor;
-            buttonSettings.FlatAppearance.MouseDownBackColor = uiColor;
+        //***************************************************************************************************************
+        // Action Events Handler Methods
+        //***************************************************************************************************************
 
-            buttonDashboard.FlatAppearance.MouseOverBackColor = uiColor;
-            buttonScriptBuilder.FlatAppearance.MouseOverBackColor = uiColor;
-            buttonDataEditor.FlatAppearance.MouseOverBackColor = uiColor;
-            buttonConfiguration.FlatAppearance.MouseOverBackColor = uiColor;
-            buttonSettings.FlatAppearance.MouseOverBackColor = uiColor;
-        }
 
-        internal void event_EnableControlButtons(bool isEnabled)
+
+        private void event_EnablePartialControlButtons(bool isEnabled)
         {
             buttonDashboard.Enabled = isEnabled;
-            buttonScriptBuilder.Enabled = isEnabled;
+            buttonScriptEditor.Enabled = isEnabled;
+            buttonComponentBuilder.Enabled = isEnabled;
+            buttonDataGenerator.Enabled = isEnabled;
             buttonDataEditor.Enabled = isEnabled;
+            buttonDatabaseEditor.Enabled = isEnabled;
             buttonConfiguration.Enabled = isEnabled;
+        }
+
+        internal void event_InitializeDatabaseManagers()
+        {
+            if (testDatabase != null) { testDatabase.event_CloseConnection(); }
+            if (resultDatabase != null) { resultDatabase.event_CloseConnection(); }
+
+            testDatabase = common.event_DatabaseConnector(settingsInfo["ScriptName"], "Test");
+            resultDatabase = common.event_DatabaseConnector(settingsInfo["ScriptName"], "Result");
+
+            testDatabase.event_OpenConnection();
+            resultDatabase.event_OpenConnection();
+        }
+
+        internal void event_CloseAllDatabaseConnections()
+        {
+            testDatabase.event_CloseConnection();
+            testDatabase = null;
+
+            resultDatabase.event_CloseConnection();
+            resultDatabase = null;
+        }
+
+        internal void event_ControlInstances()
+        {
+            dashboard = new ControlDashboard(this);
+            scriptEditor = new ControlScriptEditor(this);
+            componentEditor = new ControlComponentEditor(this);
+            dataGenerator = new ControlDataGenerator(this);
+            dataEditor = new ControlDataEditor(this);
+            databaseEditor = new ControlDatabaseEditor(this);
+            configuration = new ControlConfiguration(this);
+        }
+
+        private void event_SetButtonText()
+        {
+            buttonDashboard.Text = "Dashboard";
+            buttonScriptEditor.Text = "Script Flow";
+            buttonComponentBuilder.Text = "Components";
+            buttonDataGenerator.Text = "Generate Data";
+            buttonDataEditor.Text = "Edit Test Data";
+            buttonDatabaseEditor.Text = "Edit Database";
+            buttonConfiguration.Text = "Configuration";
+            buttonSettings.Text = "Settings";
+        }
+
+        private void event_EmptyButtonText()
+        {
+            buttonDashboard.Text = String.Empty;
+            buttonScriptEditor.Text = String.Empty;
+            buttonComponentBuilder.Text = String.Empty;
+            buttonDataGenerator.Text = String.Empty;
+            buttonDataEditor.Text = String.Empty;
+            buttonDatabaseEditor.Text = String.Empty;
+            buttonConfiguration.Text = String.Empty;
+            buttonSettings.Text = String.Empty;
+        }
+
+        internal void event_SetButtonBackColor(Button button)
+        {
+            event_ResetButtonBackgroundColor();
+            Color color = common.event_RetrieveUiColor(settingsInfo["UiColor"]);
+            button.BackColor = color;
+        }
+
+        private void event_ResetButtonBackgroundColor()
+        {
+            Color color = Color.FromArgb(45, 45, 45);
+            buttonDashboard.BackColor = color;
+            buttonScriptEditor.BackColor = color;
+            buttonComponentBuilder.BackColor = color;
+            buttonDataGenerator.BackColor = color;
+            buttonDataEditor.BackColor = color;
+            buttonDatabaseEditor.BackColor = color;
+            buttonConfiguration.BackColor = color;
+            buttonSettings.BackColor = color;
+        }
+
+        internal void event_EnableAllControlButtons(bool isEnabled)
+        {
+            event_EnablePartialControlButtons(isEnabled);
             buttonSettings.Enabled = isEnabled;
-        }
-
-        private void event_ResetForm()
-        {
-            panelControlBackground.Controls.Clear();
-            buttonDashboard.BackColor = Color.FromArgb(60, 60, 60);
-            buttonScriptBuilder.BackColor = Color.FromArgb(60, 60, 60);
-            buttonDataEditor.BackColor = Color.FromArgb(60, 60, 60);
-            buttonConfiguration.BackColor = Color.FromArgb(60, 60, 60);
-            buttonSettings.BackColor = Color.FromArgb(60, 60, 60);
-        }
-
-        private bool event_ProgressCheck()
-        {
-            bool inProgress = false;
-            bool switchView = true;
-
-            if (currentViewName.Equals("Dashboard")) {
-                inProgress = false;
-                switchView = event_DetermineSwitchViewStatus(inProgress);
-            }
-            else if (currentViewName.Equals("ScriptBuilder")) {
-                inProgress = scriptBuilder.event_InProgress;
-                switchView = event_DetermineSwitchViewStatus(inProgress);
-            }
-            else if (currentViewName.Equals("DataEditor")) {
-                inProgress = dataEditor.event_InProgress;
-                switchView = event_DetermineSwitchViewStatus(inProgress);
-            }
-            else if (currentViewName.Equals("Configuration")) {
-                inProgress = configuration.event_InProgress;
-                switchView = event_DetermineSwitchViewStatus(inProgress);
-            }
-            else if (currentViewName.Equals("Settings")) {
-                inProgress = false;
-                switchView = event_DetermineSwitchViewStatus(inProgress);
-            }
-            else {
-                switchView = true;
-            }
-
-            return switchView;
-        }
-
-        private bool event_DetermineSwitchViewStatus(bool inProgress)
-        {
-            bool switchView = true;
-
-            if (inProgress) {
-
-                string title = "Unfinished Work";
-                string messagePart1 = "You seem to have unfinished processes in this module.\n";
-                string messagePart2 = "If you switch modules now you will lose all of your work.\n";
-                string messagePart3 = "Are you sure you want to switch to another module?";
-                string fullMessage = messagePart1 + messagePart2 + messagePart3;
-
-                DialogResult dialogResult;
-                dialogResult = MessageBox.Show(fullMessage, title, MessageBoxButtons.YesNo);
-
-                if (dialogResult == DialogResult.No) {
-                    switchView = false;
-                }
-            }
-
-            return switchView;
         }
     }
 }

@@ -27,12 +27,15 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\logo_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -109,11 +112,17 @@
     <Compile Include="ControlDataEditor.designer.cs">
       <DependentUpon>ControlDataEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlScriptBuilder.cs">
+    <Compile Include="ControlComponentEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlScriptBuilder.designer.cs">
-      <DependentUpon>ControlScriptBuilder.cs</DependentUpon>
+    <Compile Include="ControlComponentEditor.designer.cs">
+      <DependentUpon>ControlComponentEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlScriptEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlScriptEditor.Designer.cs">
+      <DependentUpon>ControlScriptEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlSettings.cs">
       <SubType>UserControl</SubType>
@@ -121,7 +130,19 @@
     <Compile Include="ControlSettings.designer.cs">
       <DependentUpon>ControlSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseConnector.cs" />
+    <Compile Include="DatabaseManager.cs" />
+    <Compile Include="ControlDatabaseEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlDatabaseEditor.Designer.cs">
+      <DependentUpon>ControlDatabaseEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlDataGenerator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlDataGenerator.Designer.cs">
+      <DependentUpon>ControlDataGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +155,15 @@
     <Compile Include="FormDataRetrieval.designer.cs">
       <DependentUpon>FormDataRetrieval.cs</DependentUpon>
     </Compile>
+    <Compile Include="GridviewManager.cs" />
     <Compile Include="ModelConfiguration.cs" />
     <Compile Include="ModelDashboard.cs" />
+    <Compile Include="ModelDatabaseEditor.cs" />
     <Compile Include="ModelDataEditor.cs" />
+    <Compile Include="ModelDataGenerator.cs" />
     <Compile Include="ModelMain.cs" />
-    <Compile Include="ModelScriptBuilder.cs" />
+    <Compile Include="ModelComponentBuilder.cs" />
+    <Compile Include="ModelScriptEditor.cs" />
     <Compile Include="ModelSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,11 +176,20 @@
     <EmbeddedResource Include="ControlDataEditor.resx">
       <DependentUpon>ControlDataEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlScriptBuilder.resx">
-      <DependentUpon>ControlScriptBuilder.cs</DependentUpon>
+    <EmbeddedResource Include="ControlComponentEditor.resx">
+      <DependentUpon>ControlComponentEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlScriptEditor.resx">
+      <DependentUpon>ControlScriptEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlSettings.resx">
       <DependentUpon>ControlSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDatabaseEditor.resx">
+      <DependentUpon>ControlDatabaseEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDataGenerator.resx">
+      <DependentUpon>ControlDataGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -205,9 +239,6 @@
     <None Include="Resources\dashboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\data_editor.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -226,13 +257,52 @@
     <None Include="Resources\penguin.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ScriptBuilderOptions.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\sqlite3.exe" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\StreamLineEngine.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ActionsList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\component_builder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\data_generator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test_data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\random_data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\InitialLandingPage.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Script.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\chromedriver.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\geckodriver32.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\geckodriver64.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\IEDriverServer32.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\IEDriverServer64.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReportTemplate.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />

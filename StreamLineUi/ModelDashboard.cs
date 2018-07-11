@@ -1,62 +1,73 @@
-﻿using System.Collections;
-using System.Data;
+﻿using System.Data;
 using System.Windows.Forms;
 using LiveCharts.Wpf;
 using LiveCharts;
 using System;
+using System.Drawing;
 
 namespace StreamLineUi
 {
-    internal class ModelDashboard
-    {
-    }
+    internal class ModelDashboard { }
 
     public partial class ControlDashboard : UserControl
     {
-        private void initialize_ChooseUiColor()
-        {
-            string selectedColor = settingsDictionary["UiColor"];
-            uiColor = common.event_RetrieveSpecifiedColor(selectedColor);
-        }
+        //***************************************************************************************************************
+        // Initial Setup Methods
+        //***************************************************************************************************************
+
+
 
         private void initialize_ChangeUiColor()
         {
-            buttonLoadTestSet.BackColor = uiColor;
-            buttonLoadTestCaseDetails.BackColor = uiColor;
-            gridviewTable.DefaultCellStyle.SelectionBackColor = uiColor;
+            Color color = common.event_RetrieveUiColor(formMain.settingsInfo["UiColor"]);
+            gridview.DefaultCellStyle.SelectionBackColor = color;
+            common.event_ChangeButtonsColor(this, color);
         }
 
-        private void initialize_GaugeControls()
+        private void initialize_GuageAndChartBackColor()
+        {
+            gaugePassedTests.BackColor = Color.White;
+            gaugeFailedTests.BackColor = Color.White;
+            gaugeSkippedTests.BackColor = Color.White;
+            chartExecutionTime.BackColor = Color.White;
+        }
+
+        private void initialize_GaugeSettings()
         {
             gaugePassedTests.Uses360Mode = true;
             gaugePassedTests.From = 0;
-            gaugePassedTests.Base.FromColor = System.Windows.Media.Color.FromRgb(0, 221, 14);
-            gaugePassedTests.Base.ToColor = System.Windows.Media.Color.FromRgb(1, 158, 12);
 
             gaugeFailedTests.Uses360Mode = true;
             gaugeFailedTests.From = 0;
-            gaugeFailedTests.Base.FromColor = System.Windows.Media.Color.FromRgb(255, 0, 0);
-            gaugeFailedTests.Base.ToColor = System.Windows.Media.Color.FromRgb(135, 0, 0);
 
             gaugeSkippedTests.Uses360Mode = true;
             gaugeSkippedTests.From = 0;
-            gaugeSkippedTests.Base.FromColor = System.Windows.Media.Color.FromRgb(120, 120, 120);
-            gaugeSkippedTests.Base.ToColor = System.Windows.Media.Color.FromRgb(100, 100, 100);
-
-            gaugeTotalTests.Uses360Mode = true;
-            gaugeTotalTests.From = 0;
-            gaugeTotalTests.Base.FromColor = System.Windows.Media.Color.FromRgb(0, 168, 255);
-            gaugeTotalTests.Base.ToColor = System.Windows.Media.Color.FromRgb(1, 105, 158);
         }
 
-        private void initialize_TestExecutionIds()
+        private void initialize_GaugeColors()
         {
-            string tableName = "EXECUTION";
-            string columnName = "EXECUTION_ID";
+            gaugePassedTests.Base.FromColor = System.Windows.Media.Color.FromRgb(0, 221, 14);
+            gaugePassedTests.Base.ToColor = System.Windows.Media.Color.FromRgb(1, 158, 12);
 
-            ArrayList executionIdList = new ArrayList();
-            executionIdList = database.event_SingleColumnSelectQuery(tableName, columnName);
-            dropdownExecutedID.DataSource = executionIdList;
+            gaugeFailedTests.Base.FromColor = System.Windows.Media.Color.FromRgb(255, 0, 0);
+            gaugeFailedTests.Base.ToColor = System.Windows.Media.Color.FromRgb(135, 0, 0);
+
+            gaugeSkippedTests.Base.FromColor = System.Windows.Media.Color.FromRgb(120, 120, 120);
+            gaugeSkippedTests.Base.ToColor = System.Windows.Media.Color.FromRgb(100, 100, 100);
+        }
+
+
+
+        //***************************************************************************************************************
+        // Action Events Handler Methods
+        //***************************************************************************************************************
+
+
+
+        private void event_TestExecutionIds()
+        {
+            dropdownExecutionIds.DataSource = database
+                .event_SingleColumnSelectQuery("Execution", "Execution_ID");
         }
 
         private void event_ResetStatusCount()
@@ -64,93 +75,80 @@ namespace StreamLineUi
             countPassedTests = 0;
             countFailedTests = 0;
             countSkippedTests = 0;
-            countTotalTestsRan = 0;
-            countTotalTests = 0;
+            countTestsRan = 0;
         }
 
         private void event_LoadMainTableData(string executionID)
         {
-            string tableName = "MAIN";
-            string filterCondition = "EXECUTION_ID = '" + executionID + "'";
-
-            DataTable dataTable;
-            dataTable = database.event_LoadFilteredTable(tableName, filterCondition);
-            gridviewTable.DataSource = dataTable;
+            string tableName = "Main";
+            string filterCondition = "Execution_ID = '" + executionID + "'";
+            gridview.DataSource = database.event_LoadFilteredTable(tableName, filterCondition);
         }
 
         private void event_LoadExecutionDetails(string executionID)
         {
-            string tableName = "EXECUTION";
-            string filterCondition = "EXECUTION_ID = '" + executionID + "'";
+            string tableName = "Execution";
+            string filterCondition = "Execution_ID = '" + executionID + "'";
 
             DataTable dataTable;
-            dataTable = database.event_LoadFilteredTable(tableName, filterCondition);
+            dataTable = database.event_LoadFilteredTable(tableName, filterCondition);           
 
-            string machineName = dataTable.Rows[0]["MACHINE_NAME"].ToString();
-            string startDate = dataTable.Rows[0]["START_DATE"].ToString();
-            string startTime = dataTable.Rows[0]["START_TIME"].ToString();
-            string endDate = dataTable.Rows[0]["END_DATE"].ToString();
-            string endTime = dataTable.Rows[0]["END_TIME"].ToString();
-            string countTotalTestsRan = dataTable.Rows[0]["RAN_TEST_CASE_COUNT"].ToString();
-            string countTotalTests = dataTable.Rows[0]["TOTAL_TEST_CASE_COUNT"].ToString();
+            labelMachineName.Text = dataTable.Rows[0]["Machine_Name"].ToString();
+            labelBrowserName.Text = dataTable.Rows[0]["Browser_Name"].ToString();
+            labelStartDate.Text = dataTable.Rows[0]["Start_Date"].ToString();
+            labelEndDate.Text = dataTable.Rows[0]["End_Date"].ToString();
+            labelStartTime.Text = dataTable.Rows[0]["Start_Time"].ToString();
+            labelEndTime.Text = dataTable.Rows[0]["End_Time"].ToString();
 
-            labelMachineName.Text = machineName;
-            labelTotalTestsRanCount.Text = countTotalTestsRan;
-            labelTotalTestsAvailableCount.Text = countTotalTests;
-            labelStartDate.Text = startDate;
-            labelStartTime.Text = startTime;
-            labelEndDate.Text = endDate;
-            labelEndTime.Text = endTime;
-            this.countTotalTestsRan = Int32.Parse(countTotalTestsRan);
-            this.countTotalTests = Int32.Parse(countTotalTests);
+            countTestsRan = Int32.Parse(dataTable.Rows[0]["Ran_Test_Case_Count"].ToString());
+            labelTotalTestsRanCount.Text = countTestsRan.ToString();
+            labelTotalTestsAvailableCount.Text = dataTable.Rows[0]["Total_Test_Case_Count"].ToString();
         }
 
         private void event_LoadStatusCount()
         {
-            foreach (DataGridViewRow gridRow in gridviewTable.Rows) {
+            int statusColumnIndex = gridview.Columns["Status"].Index;
 
-                var status = gridRow.Cells["STATUS"].Value;
-
-                if (status != null) {
-                    event_IncrementStatusCount(status.ToString());
-                }
-                else {
-                    continue;
-                }
+            foreach (DataGridViewRow row in gridview.Rows) {
+                event_IncrementStatusCount(gridviewManager
+                    .event_RetrieveCellDataValue(row, statusColumnIndex));
             }
         }
 
         private void event_IncrementStatusCount(string status)
         {
-            status = status.ToUpper();
+            switch (status) {
 
-            if (status.Equals("PASS")) { countPassedTests++; }
-            else if (status.Equals("FAIL")) { countFailedTests++; }
-            else if (status.Equals("SKIP")) { countSkippedTests++; }
+                case "Passed":
+                    countPassedTests++;
+                    break;
+
+                case "Failed":
+                    countFailedTests++;
+                    break;
+
+                default:
+                    countSkippedTests++;
+                    break;
+            }
         }
 
         private void event_SetTestCasesPassedGauge()
         {
-            gaugePassedTests.To = countTotalTestsRan;
+            gaugePassedTests.To = countTestsRan;
             gaugePassedTests.Value = countPassedTests;
         }
 
         private void event_SetTestCasesFailedGauge()
         {
-            gaugeFailedTests.To = countTotalTestsRan;
+            gaugeFailedTests.To = countTestsRan;
             gaugeFailedTests.Value = countFailedTests;
         }
 
         private void event_SetTestCasesSkippedGauge()
         {
-            gaugeSkippedTests.To = countTotalTestsRan;
+            gaugeSkippedTests.To = countTestsRan;
             gaugeSkippedTests.Value = countSkippedTests;
-        }
-
-        private void event_SetTestCasesTotalGauge()
-        {
-            gaugeTotalTests.To = countTotalTests;
-            gaugeTotalTests.Value = countTotalTestsRan;
         }
 
         private void event_SetTestCasesExecutionTimeChart()
@@ -159,15 +157,48 @@ namespace StreamLineUi
             chartExecutionTime.AxisX.Clear();
             chartExecutionTime.AxisY.Clear();
 
-            string executionID = dropdownExecutedID.Text;
-            int size = countPassedTests + countFailedTests;
-            double[] executionTimes;
-            executionTimes = database.event_RetrieveExecutionTimes(executionID, size);
-            
-            ChartValues<double> loadTimeChartValues = new ChartValues<double>(executionTimes);
+            ChartValues<double> loadTimeChartValues = new ChartValues<double>(event_RetrieveExecutionTimes());
             chartExecutionTime.Series.Add(new StepLineSeries { Values = loadTimeChartValues });
             chartExecutionTime.AxisX.Add(new Axis { Title = "Test Cases" });
             chartExecutionTime.AxisY.Add(new Axis { Title = "Execution Time In Seconds" });
+        }
+
+        private double[] event_RetrieveExecutionTimes()
+        {
+            double[] executionTimes = new double[gridview.Rows.Count];
+
+            try {
+
+                int columnIndex = gridview.Columns["Execution_Time"].Index;
+
+                for (int rowIndex = 0; rowIndex < gridview.Rows.Count; rowIndex++) {
+
+                    double time = event_RetrieveTestCaseExecutionTime(columnIndex, rowIndex);
+                    executionTimes[rowIndex] = time;
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+
+            return executionTimes;
+        }
+
+        private double event_RetrieveTestCaseExecutionTime(int columnIndex, int rowIndex)
+        {
+            double time;
+
+            try {
+
+                DataGridViewRow row = gridview.Rows[rowIndex];
+                Double.TryParse(gridviewManager.event_RetrieveCellDataValue(row, columnIndex), out time);
+            }
+            catch (Exception ex) {
+                time = 0;
+                MessageBox.Show(ex.Message);
+            }
+
+            return time;
         }
     }
 }

@@ -32,137 +32,139 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelExecutedTestSetList = new System.Windows.Forms.Label();
-            this.dropdownExecutedID = new MetroFramework.Controls.MetroComboBox();
-            this.buttonLoadTestSet = new System.Windows.Forms.Button();
+            this.dropdownExecutionIds = new MetroFramework.Controls.MetroComboBox();
+            this.buttonLoadExecution = new System.Windows.Forms.Button();
             this.gaugePassedTests = new LiveCharts.WinForms.SolidGauge();
             this.chartExecutionTime = new LiveCharts.WinForms.CartesianChart();
             this.gaugeFailedTests = new LiveCharts.WinForms.SolidGauge();
-            this.gaugeTotalTests = new LiveCharts.WinForms.SolidGauge();
             this.labelPassedTests = new System.Windows.Forms.Label();
             this.labelFailedTests = new System.Windows.Forms.Label();
-            this.labelTotalTestsRan = new System.Windows.Forms.Label();
             this.panelTableBackground = new System.Windows.Forms.Panel();
-            this.gridviewTable = new MetroFramework.Controls.MetroGrid();
+            this.gridview = new System.Windows.Forms.DataGridView();
             this.labelExecutedTestsList = new System.Windows.Forms.Label();
             this.labelExecutionTimeOverview = new System.Windows.Forms.Label();
             this.labelSkippedTests = new System.Windows.Forms.Label();
             this.gaugeSkippedTests = new LiveCharts.WinForms.SolidGauge();
             this.labelEndDateDescription = new System.Windows.Forms.Label();
-            this.panelEndDateBackground = new System.Windows.Forms.Panel();
+            this.panelEndDate = new System.Windows.Forms.Panel();
             this.labelEndDate = new System.Windows.Forms.Label();
-            this.panelEndTimeBackground = new System.Windows.Forms.Panel();
+            this.panelEndTime = new System.Windows.Forms.Panel();
             this.labelEndTime = new System.Windows.Forms.Label();
             this.labelEndTimeDescription = new System.Windows.Forms.Label();
-            this.panelStartTimeBackground = new System.Windows.Forms.Panel();
+            this.panelStartTime = new System.Windows.Forms.Panel();
             this.labelStartTime = new System.Windows.Forms.Label();
             this.labelStartTimeDescription = new System.Windows.Forms.Label();
-            this.panelStartDateBackground = new System.Windows.Forms.Panel();
+            this.panelStartDate = new System.Windows.Forms.Panel();
             this.labelStartDate = new System.Windows.Forms.Label();
             this.labelStartDateDescription = new System.Windows.Forms.Label();
-            this.buttonLoadTestCaseDetails = new System.Windows.Forms.Button();
-            this.panelMachineNameBackground = new System.Windows.Forms.Panel();
+            this.panelMachineName = new System.Windows.Forms.Panel();
             this.labelMachineName = new System.Windows.Forms.Label();
             this.labelMachineNameDescription = new System.Windows.Forms.Label();
-            this.panelExecutionIDBackground = new System.Windows.Forms.Panel();
-            this.labelExecutionID = new System.Windows.Forms.Label();
-            this.labelExecutionIDDescription = new System.Windows.Forms.Label();
-            this.panelTotalTestsAvailableBackground = new System.Windows.Forms.Panel();
+            this.panelExecutionId = new System.Windows.Forms.Panel();
+            this.labelExecutionId = new System.Windows.Forms.Label();
+            this.labelExecutionIdDescription = new System.Windows.Forms.Label();
+            this.panelTotalTestsAvailable = new System.Windows.Forms.Panel();
             this.labelTotalTestsAvailableCount = new System.Windows.Forms.Label();
             this.labelTotalTestsAvailableDescription = new System.Windows.Forms.Label();
-            this.panelTotalTestsRanBackground = new System.Windows.Forms.Panel();
+            this.panelTotalTestsRan = new System.Windows.Forms.Panel();
             this.labelTotalTestsRanCount = new System.Windows.Forms.Label();
             this.labelTotalTestsRanDescription = new System.Windows.Forms.Label();
+            this.buttonDeleteExecution = new System.Windows.Forms.Button();
+            this.buttonReloadExecutionIdList = new System.Windows.Forms.Button();
+            this.panelBrowserName = new System.Windows.Forms.Panel();
+            this.labelBrowserName = new System.Windows.Forms.Label();
+            this.labelBrowserNameDescription = new System.Windows.Forms.Label();
             this.panelTableBackground.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridviewTable)).BeginInit();
-            this.panelEndDateBackground.SuspendLayout();
-            this.panelEndTimeBackground.SuspendLayout();
-            this.panelStartTimeBackground.SuspendLayout();
-            this.panelStartDateBackground.SuspendLayout();
-            this.panelMachineNameBackground.SuspendLayout();
-            this.panelExecutionIDBackground.SuspendLayout();
-            this.panelTotalTestsAvailableBackground.SuspendLayout();
-            this.panelTotalTestsRanBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridview)).BeginInit();
+            this.panelEndDate.SuspendLayout();
+            this.panelEndTime.SuspendLayout();
+            this.panelStartTime.SuspendLayout();
+            this.panelStartDate.SuspendLayout();
+            this.panelMachineName.SuspendLayout();
+            this.panelExecutionId.SuspendLayout();
+            this.panelTotalTestsAvailable.SuspendLayout();
+            this.panelTotalTestsRan.SuspendLayout();
+            this.panelBrowserName.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelExecutedTestSetList
             // 
-            this.labelExecutedTestSetList.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExecutedTestSetList.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExecutedTestSetList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelExecutedTestSetList.Location = new System.Drawing.Point(33, 33);
             this.labelExecutedTestSetList.Name = "labelExecutedTestSetList";
-            this.labelExecutedTestSetList.Size = new System.Drawing.Size(150, 29);
-            this.labelExecutedTestSetList.TabIndex = 1;
+            this.labelExecutedTestSetList.Size = new System.Drawing.Size(118, 29);
+            this.labelExecutedTestSetList.TabIndex = 0;
             this.labelExecutedTestSetList.Text = "Execution ID List:";
             this.labelExecutedTestSetList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dropdownExecutedID
+            // dropdownExecutionIds
             // 
-            this.dropdownExecutedID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dropdownExecutedID.FormattingEnabled = true;
-            this.dropdownExecutedID.ItemHeight = 23;
-            this.dropdownExecutedID.Location = new System.Drawing.Point(189, 33);
-            this.dropdownExecutedID.Name = "dropdownExecutedID";
-            this.dropdownExecutedID.Size = new System.Drawing.Size(438, 29);
-            this.dropdownExecutedID.TabIndex = 3;
-            this.dropdownExecutedID.UseSelectable = true;
+            this.dropdownExecutionIds.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dropdownExecutionIds.FormattingEnabled = true;
+            this.dropdownExecutionIds.ItemHeight = 23;
+            this.dropdownExecutionIds.Location = new System.Drawing.Point(157, 33);
+            this.dropdownExecutionIds.Name = "dropdownExecutionIds";
+            this.dropdownExecutionIds.Size = new System.Drawing.Size(266, 29);
+            this.dropdownExecutionIds.TabIndex = 1;
+            this.dropdownExecutionIds.UseSelectable = true;
             // 
-            // buttonLoadTestSet
+            // buttonLoadExecution
             // 
-            this.buttonLoadTestSet.BackColor = System.Drawing.Color.DodgerBlue;
-            this.buttonLoadTestSet.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonLoadTestSet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonLoadTestSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonLoadTestSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLoadTestSet.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoadTestSet.ForeColor = System.Drawing.Color.White;
-            this.buttonLoadTestSet.Location = new System.Drawing.Point(633, 33);
-            this.buttonLoadTestSet.Name = "buttonLoadTestSet";
-            this.buttonLoadTestSet.Size = new System.Drawing.Size(117, 29);
-            this.buttonLoadTestSet.TabIndex = 12;
-            this.buttonLoadTestSet.Text = "Load Test Set";
-            this.buttonLoadTestSet.UseVisualStyleBackColor = false;
-            this.buttonLoadTestSet.Click += new System.EventHandler(this.action_LoadSelectedExecutionDetails);
+            this.buttonLoadExecution.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.buttonLoadExecution.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonLoadExecution.FlatAppearance.BorderSize = 2;
+            this.buttonLoadExecution.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonLoadExecution.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonLoadExecution.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLoadExecution.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLoadExecution.ForeColor = System.Drawing.Color.White;
+            this.buttonLoadExecution.Location = new System.Drawing.Point(429, 33);
+            this.buttonLoadExecution.Name = "buttonLoadExecution";
+            this.buttonLoadExecution.Size = new System.Drawing.Size(117, 29);
+            this.buttonLoadExecution.TabIndex = 2;
+            this.buttonLoadExecution.Text = "Load Execution";
+            this.buttonLoadExecution.UseVisualStyleBackColor = false;
+            this.buttonLoadExecution.Click += new System.EventHandler(this.action_LoadExecution);
             // 
             // gaugePassedTests
             // 
-            this.gaugePassedTests.Location = new System.Drawing.Point(33, 233);
+            this.gaugePassedTests.BackColor = System.Drawing.Color.Black;
+            this.gaugePassedTests.ForeColor = System.Drawing.Color.White;
+            this.gaugePassedTests.Location = new System.Drawing.Point(36, 126);
             this.gaugePassedTests.Name = "gaugePassedTests";
             this.gaugePassedTests.Size = new System.Drawing.Size(150, 150);
-            this.gaugePassedTests.TabIndex = 13;
-            this.gaugePassedTests.Text = "solidGauge1";
+            this.gaugePassedTests.TabIndex = 0;
             // 
             // chartExecutionTime
             // 
-            this.chartExecutionTime.Location = new System.Drawing.Point(806, 163);
+            this.chartExecutionTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chartExecutionTime.BackColor = System.Drawing.Color.Black;
+            this.chartExecutionTime.ForeColor = System.Drawing.Color.White;
+            this.chartExecutionTime.Location = new System.Drawing.Point(806, 56);
             this.chartExecutionTime.Name = "chartExecutionTime";
-            this.chartExecutionTime.Size = new System.Drawing.Size(621, 220);
-            this.chartExecutionTime.TabIndex = 14;
+            this.chartExecutionTime.Size = new System.Drawing.Size(606, 220);
+            this.chartExecutionTime.TabIndex = 0;
             this.chartExecutionTime.Text = "cartesianChart1";
             // 
             // gaugeFailedTests
             // 
-            this.gaugeFailedTests.Location = new System.Drawing.Point(224, 233);
+            this.gaugeFailedTests.BackColor = System.Drawing.Color.Black;
+            this.gaugeFailedTests.ForeColor = System.Drawing.Color.White;
+            this.gaugeFailedTests.Location = new System.Drawing.Point(292, 126);
             this.gaugeFailedTests.Name = "gaugeFailedTests";
             this.gaugeFailedTests.Size = new System.Drawing.Size(150, 150);
-            this.gaugeFailedTests.TabIndex = 15;
-            this.gaugeFailedTests.Text = "solidGauge2";
-            // 
-            // gaugeTotalTests
-            // 
-            this.gaugeTotalTests.Location = new System.Drawing.Point(600, 233);
-            this.gaugeTotalTests.Name = "gaugeTotalTests";
-            this.gaugeTotalTests.Size = new System.Drawing.Size(150, 150);
-            this.gaugeTotalTests.TabIndex = 16;
-            this.gaugeTotalTests.Text = "solidGauge3";
+            this.gaugeFailedTests.TabIndex = 0;
             // 
             // labelPassedTests
             // 
             this.labelPassedTests.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPassedTests.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPassedTests.Location = new System.Drawing.Point(33, 201);
+            this.labelPassedTests.Location = new System.Drawing.Point(36, 94);
             this.labelPassedTests.Name = "labelPassedTests";
             this.labelPassedTests.Size = new System.Drawing.Size(150, 29);
-            this.labelPassedTests.TabIndex = 18;
+            this.labelPassedTests.TabIndex = 0;
             this.labelPassedTests.Text = "Tests Passed";
             this.labelPassedTests.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -170,109 +172,100 @@
             // 
             this.labelFailedTests.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFailedTests.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelFailedTests.Location = new System.Drawing.Point(224, 201);
+            this.labelFailedTests.Location = new System.Drawing.Point(292, 94);
             this.labelFailedTests.Name = "labelFailedTests";
             this.labelFailedTests.Size = new System.Drawing.Size(150, 29);
-            this.labelFailedTests.TabIndex = 19;
+            this.labelFailedTests.TabIndex = 0;
             this.labelFailedTests.Text = "Tests Failed";
             this.labelFailedTests.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelTotalTestsRan
-            // 
-            this.labelTotalTestsRan.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalTestsRan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelTotalTestsRan.Location = new System.Drawing.Point(585, 201);
-            this.labelTotalTestsRan.Name = "labelTotalTestsRan";
-            this.labelTotalTestsRan.Size = new System.Drawing.Size(180, 29);
-            this.labelTotalTestsRan.TabIndex = 20;
-            this.labelTotalTestsRan.Text = "Tests Ran Vs Available";
-            this.labelTotalTestsRan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panelTableBackground
             // 
-            this.panelTableBackground.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelTableBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTableBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.panelTableBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTableBackground.Controls.Add(this.gridviewTable);
+            this.panelTableBackground.Controls.Add(this.gridview);
             this.panelTableBackground.Controls.Add(this.labelExecutedTestsList);
-            this.panelTableBackground.Location = new System.Drawing.Point(33, 446);
+            this.panelTableBackground.Location = new System.Drawing.Point(451, 329);
             this.panelTableBackground.Name = "panelTableBackground";
-            this.panelTableBackground.Padding = new System.Windows.Forms.Padding(5);
-            this.panelTableBackground.Size = new System.Drawing.Size(1394, 326);
-            this.panelTableBackground.TabIndex = 21;
+            this.panelTableBackground.Padding = new System.Windows.Forms.Padding(3);
+            this.panelTableBackground.Size = new System.Drawing.Size(961, 398);
+            this.panelTableBackground.TabIndex = 0;
             // 
             // gridviewTable
             // 
-            this.gridviewTable.AllowUserToAddRows = false;
-            this.gridviewTable.AllowUserToDeleteRows = false;
-            this.gridviewTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.gridviewTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridviewTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.gridviewTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.gridviewTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridviewTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridviewTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.gridviewTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridview.AllowUserToAddRows = false;
+            this.gridview.AllowUserToDeleteRows = false;
+            this.gridview.AllowUserToResizeColumns = false;
+            this.gridview.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridview.BackgroundColor = System.Drawing.Color.White;
+            this.gridview.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridview.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridviewTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridviewTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewTable.DefaultCellStyle = dataGridViewCellStyle3;
-            this.gridviewTable.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gridviewTable.EnableHeadersVisualStyles = false;
-            this.gridviewTable.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.gridviewTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridviewTable.Location = new System.Drawing.Point(5, 37);
-            this.gridviewTable.MultiSelect = false;
-            this.gridviewTable.Name = "gridviewTable";
-            this.gridviewTable.ReadOnly = true;
-            this.gridviewTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridview.DefaultCellStyle = dataGridViewCellStyle3;
+            this.gridview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridview.EnableHeadersVisualStyles = false;
+            this.gridview.GridColor = System.Drawing.Color.Gainsboro;
+            this.gridview.Location = new System.Drawing.Point(3, 32);
+            this.gridview.MultiSelect = false;
+            this.gridview.Name = "gridviewTable";
+            this.gridview.ReadOnly = true;
+            this.gridview.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridviewTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.gridviewTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridviewTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridviewTable.Size = new System.Drawing.Size(1382, 282);
-            this.gridviewTable.TabIndex = 22;
+            this.gridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.gridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridview.Size = new System.Drawing.Size(953, 361);
+            this.gridview.TabIndex = 0;
+            this.gridview.DoubleClick += new System.EventHandler(this.action_LaunchHtmlReport);
             // 
             // labelExecutedTestsList
             // 
             this.labelExecutedTestsList.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelExecutedTestsList.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExecutedTestsList.ForeColor = System.Drawing.Color.White;
-            this.labelExecutedTestsList.Location = new System.Drawing.Point(5, 5);
+            this.labelExecutedTestsList.Location = new System.Drawing.Point(3, 3);
             this.labelExecutedTestsList.Name = "labelExecutedTestsList";
-            this.labelExecutedTestsList.Size = new System.Drawing.Size(1382, 29);
-            this.labelExecutedTestsList.TabIndex = 18;
-            this.labelExecutedTestsList.Text = "Test Set Execution Results";
+            this.labelExecutedTestsList.Size = new System.Drawing.Size(953, 29);
+            this.labelExecutedTestsList.TabIndex = 0;
+            this.labelExecutedTestsList.Text = "Executed Test Case List";
             this.labelExecutedTestsList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelExecutionTimeOverview
             // 
+            this.labelExecutionTimeOverview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelExecutionTimeOverview.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExecutionTimeOverview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelExecutionTimeOverview.Location = new System.Drawing.Point(806, 131);
+            this.labelExecutionTimeOverview.Location = new System.Drawing.Point(806, 24);
             this.labelExecutionTimeOverview.Name = "labelExecutionTimeOverview";
-            this.labelExecutionTimeOverview.Size = new System.Drawing.Size(621, 29);
+            this.labelExecutionTimeOverview.Size = new System.Drawing.Size(606, 29);
             this.labelExecutionTimeOverview.TabIndex = 22;
             this.labelExecutionTimeOverview.Text = "Test Case Execution Time Overview";
             this.labelExecutionTimeOverview.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -281,20 +274,21 @@
             // 
             this.labelSkippedTests.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSkippedTests.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelSkippedTests.Location = new System.Drawing.Point(415, 201);
+            this.labelSkippedTests.Location = new System.Drawing.Point(548, 94);
             this.labelSkippedTests.Name = "labelSkippedTests";
             this.labelSkippedTests.Size = new System.Drawing.Size(150, 29);
-            this.labelSkippedTests.TabIndex = 25;
+            this.labelSkippedTests.TabIndex = 0;
             this.labelSkippedTests.Text = "Tests Skipped";
             this.labelSkippedTests.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gaugeSkippedTests
             // 
-            this.gaugeSkippedTests.Location = new System.Drawing.Point(415, 233);
+            this.gaugeSkippedTests.BackColor = System.Drawing.Color.Black;
+            this.gaugeSkippedTests.ForeColor = System.Drawing.Color.White;
+            this.gaugeSkippedTests.Location = new System.Drawing.Point(548, 126);
             this.gaugeSkippedTests.Name = "gaugeSkippedTests";
             this.gaugeSkippedTests.Size = new System.Drawing.Size(150, 150);
-            this.gaugeSkippedTests.TabIndex = 24;
-            this.gaugeSkippedTests.Text = "solidGauge4";
+            this.gaugeSkippedTests.TabIndex = 0;
             // 
             // labelEndDateDescription
             // 
@@ -305,58 +299,58 @@
             this.labelEndDateDescription.Location = new System.Drawing.Point(5, 0);
             this.labelEndDateDescription.Name = "labelEndDateDescription";
             this.labelEndDateDescription.Size = new System.Drawing.Size(88, 30);
-            this.labelEndDateDescription.TabIndex = 27;
+            this.labelEndDateDescription.TabIndex = 0;
             this.labelEndDateDescription.Text = "End Date:";
             this.labelEndDateDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panelEndDateBackground
+            // panelEndDate
             // 
-            this.panelEndDateBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelEndDateBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelEndDateBackground.Controls.Add(this.labelEndDate);
-            this.panelEndDateBackground.Controls.Add(this.labelEndDateDescription);
-            this.panelEndDateBackground.Location = new System.Drawing.Point(1177, 33);
-            this.panelEndDateBackground.Name = "panelEndDateBackground";
-            this.panelEndDateBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelEndDateBackground.Size = new System.Drawing.Size(250, 32);
-            this.panelEndDateBackground.TabIndex = 28;
+            this.panelEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelEndDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEndDate.Controls.Add(this.labelEndDate);
+            this.panelEndDate.Controls.Add(this.labelEndDateDescription);
+            this.panelEndDate.Location = new System.Drawing.Point(36, 622);
+            this.panelEndDate.Name = "panelEndDate";
+            this.panelEndDate.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelEndDate.Size = new System.Drawing.Size(298, 32);
+            this.panelEndDate.TabIndex = 0;
             // 
             // labelEndDate
             // 
             this.labelEndDate.BackColor = System.Drawing.Color.White;
             this.labelEndDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelEndDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelEndDate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEndDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEndDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelEndDate.Location = new System.Drawing.Point(99, 0);
             this.labelEndDate.Name = "labelEndDate";
-            this.labelEndDate.Size = new System.Drawing.Size(149, 30);
-            this.labelEndDate.TabIndex = 28;
+            this.labelEndDate.Size = new System.Drawing.Size(197, 30);
+            this.labelEndDate.TabIndex = 0;
             this.labelEndDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panelEndTimeBackground
+            // panelEndTime
             // 
-            this.panelEndTimeBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelEndTimeBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelEndTimeBackground.Controls.Add(this.labelEndTime);
-            this.panelEndTimeBackground.Controls.Add(this.labelEndTimeDescription);
-            this.panelEndTimeBackground.Location = new System.Drawing.Point(1177, 71);
-            this.panelEndTimeBackground.Name = "panelEndTimeBackground";
-            this.panelEndTimeBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelEndTimeBackground.Size = new System.Drawing.Size(250, 32);
-            this.panelEndTimeBackground.TabIndex = 29;
+            this.panelEndTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelEndTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEndTime.Controls.Add(this.labelEndTime);
+            this.panelEndTime.Controls.Add(this.labelEndTimeDescription);
+            this.panelEndTime.Location = new System.Drawing.Point(36, 730);
+            this.panelEndTime.Name = "panelEndTime";
+            this.panelEndTime.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelEndTime.Size = new System.Drawing.Size(297, 32);
+            this.panelEndTime.TabIndex = 0;
             // 
             // labelEndTime
             // 
             this.labelEndTime.BackColor = System.Drawing.Color.White;
             this.labelEndTime.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelEndTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelEndTime.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEndTime.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEndTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelEndTime.Location = new System.Drawing.Point(102, 0);
+            this.labelEndTime.Location = new System.Drawing.Point(99, 0);
             this.labelEndTime.Name = "labelEndTime";
-            this.labelEndTime.Size = new System.Drawing.Size(146, 30);
-            this.labelEndTime.TabIndex = 28;
+            this.labelEndTime.Size = new System.Drawing.Size(196, 30);
+            this.labelEndTime.TabIndex = 0;
             this.labelEndTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelEndTimeDescription
@@ -368,33 +362,33 @@
             this.labelEndTimeDescription.Location = new System.Drawing.Point(5, 0);
             this.labelEndTimeDescription.Name = "labelEndTimeDescription";
             this.labelEndTimeDescription.Size = new System.Drawing.Size(88, 30);
-            this.labelEndTimeDescription.TabIndex = 27;
+            this.labelEndTimeDescription.TabIndex = 0;
             this.labelEndTimeDescription.Text = "End Time:";
             this.labelEndTimeDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panelStartTimeBackground
+            // panelStartTime
             // 
-            this.panelStartTimeBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelStartTimeBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelStartTimeBackground.Controls.Add(this.labelStartTime);
-            this.panelStartTimeBackground.Controls.Add(this.labelStartTimeDescription);
-            this.panelStartTimeBackground.Location = new System.Drawing.Point(806, 71);
-            this.panelStartTimeBackground.Name = "panelStartTimeBackground";
-            this.panelStartTimeBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelStartTimeBackground.Size = new System.Drawing.Size(250, 32);
-            this.panelStartTimeBackground.TabIndex = 31;
+            this.panelStartTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelStartTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelStartTime.Controls.Add(this.labelStartTime);
+            this.panelStartTime.Controls.Add(this.labelStartTimeDescription);
+            this.panelStartTime.Location = new System.Drawing.Point(36, 692);
+            this.panelStartTime.Name = "panelStartTime";
+            this.panelStartTime.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelStartTime.Size = new System.Drawing.Size(297, 32);
+            this.panelStartTime.TabIndex = 0;
             // 
             // labelStartTime
             // 
             this.labelStartTime.BackColor = System.Drawing.Color.White;
             this.labelStartTime.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelStartTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelStartTime.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStartTime.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStartTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelStartTime.Location = new System.Drawing.Point(99, 0);
             this.labelStartTime.Name = "labelStartTime";
-            this.labelStartTime.Size = new System.Drawing.Size(149, 30);
-            this.labelStartTime.TabIndex = 28;
+            this.labelStartTime.Size = new System.Drawing.Size(196, 30);
+            this.labelStartTime.TabIndex = 0;
             this.labelStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelStartTimeDescription
@@ -406,33 +400,33 @@
             this.labelStartTimeDescription.Location = new System.Drawing.Point(5, 0);
             this.labelStartTimeDescription.Name = "labelStartTimeDescription";
             this.labelStartTimeDescription.Size = new System.Drawing.Size(88, 30);
-            this.labelStartTimeDescription.TabIndex = 27;
+            this.labelStartTimeDescription.TabIndex = 0;
             this.labelStartTimeDescription.Text = "Start Time:";
             this.labelStartTimeDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panelStartDateBackground
+            // panelStartDate
             // 
-            this.panelStartDateBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelStartDateBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelStartDateBackground.Controls.Add(this.labelStartDate);
-            this.panelStartDateBackground.Controls.Add(this.labelStartDateDescription);
-            this.panelStartDateBackground.Location = new System.Drawing.Point(806, 33);
-            this.panelStartDateBackground.Name = "panelStartDateBackground";
-            this.panelStartDateBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelStartDateBackground.Size = new System.Drawing.Size(250, 32);
-            this.panelStartDateBackground.TabIndex = 30;
+            this.panelStartDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelStartDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelStartDate.Controls.Add(this.labelStartDate);
+            this.panelStartDate.Controls.Add(this.labelStartDateDescription);
+            this.panelStartDate.Location = new System.Drawing.Point(36, 584);
+            this.panelStartDate.Name = "panelStartDate";
+            this.panelStartDate.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelStartDate.Size = new System.Drawing.Size(298, 32);
+            this.panelStartDate.TabIndex = 0;
             // 
             // labelStartDate
             // 
             this.labelStartDate.BackColor = System.Drawing.Color.White;
             this.labelStartDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelStartDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelStartDate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStartDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelStartDate.Location = new System.Drawing.Point(99, 0);
             this.labelStartDate.Name = "labelStartDate";
-            this.labelStartDate.Size = new System.Drawing.Size(149, 30);
-            this.labelStartDate.TabIndex = 28;
+            this.labelStartDate.Size = new System.Drawing.Size(197, 30);
+            this.labelStartDate.TabIndex = 0;
             this.labelStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelStartDateDescription
@@ -444,52 +438,33 @@
             this.labelStartDateDescription.Location = new System.Drawing.Point(5, 0);
             this.labelStartDateDescription.Name = "labelStartDateDescription";
             this.labelStartDateDescription.Size = new System.Drawing.Size(88, 30);
-            this.labelStartDateDescription.TabIndex = 27;
+            this.labelStartDateDescription.TabIndex = 0;
             this.labelStartDateDescription.Text = "Start Date:";
             this.labelStartDateDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonLoadTestCaseDetails
+            // panelMachineName
             // 
-            this.buttonLoadTestCaseDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLoadTestCaseDetails.BackColor = System.Drawing.Color.DodgerBlue;
-            this.buttonLoadTestCaseDetails.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonLoadTestCaseDetails.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonLoadTestCaseDetails.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonLoadTestCaseDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLoadTestCaseDetails.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoadTestCaseDetails.ForeColor = System.Drawing.Color.White;
-            this.buttonLoadTestCaseDetails.Location = new System.Drawing.Point(1192, 411);
-            this.buttonLoadTestCaseDetails.Name = "buttonLoadTestCaseDetails";
-            this.buttonLoadTestCaseDetails.Size = new System.Drawing.Size(235, 29);
-            this.buttonLoadTestCaseDetails.TabIndex = 32;
-            this.buttonLoadTestCaseDetails.Text = "Load Selected Test Case Details";
-            this.buttonLoadTestCaseDetails.UseVisualStyleBackColor = false;
-            this.buttonLoadTestCaseDetails.Click += new System.EventHandler(this.action_LoadDetailedReport);
-            // 
-            // panelMachineNameBackground
-            // 
-            this.panelMachineNameBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelMachineNameBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMachineNameBackground.Controls.Add(this.labelMachineName);
-            this.panelMachineNameBackground.Controls.Add(this.labelMachineNameDescription);
-            this.panelMachineNameBackground.Location = new System.Drawing.Point(33, 132);
-            this.panelMachineNameBackground.Name = "panelMachineNameBackground";
-            this.panelMachineNameBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelMachineNameBackground.Size = new System.Drawing.Size(390, 32);
-            this.panelMachineNameBackground.TabIndex = 33;
+            this.panelMachineName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelMachineName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMachineName.Controls.Add(this.labelMachineName);
+            this.panelMachineName.Controls.Add(this.labelMachineNameDescription);
+            this.panelMachineName.Location = new System.Drawing.Point(36, 367);
+            this.panelMachineName.Name = "panelMachineName";
+            this.panelMachineName.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelMachineName.Size = new System.Drawing.Size(390, 32);
+            this.panelMachineName.TabIndex = 0;
             // 
             // labelMachineName
             // 
             this.labelMachineName.BackColor = System.Drawing.Color.White;
             this.labelMachineName.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelMachineName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelMachineName.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMachineName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMachineName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelMachineName.Location = new System.Drawing.Point(133, 0);
             this.labelMachineName.Name = "labelMachineName";
             this.labelMachineName.Size = new System.Drawing.Size(255, 30);
-            this.labelMachineName.TabIndex = 28;
+            this.labelMachineName.TabIndex = 0;
             this.labelMachineName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelMachineNameDescription
@@ -501,71 +476,71 @@
             this.labelMachineNameDescription.Location = new System.Drawing.Point(5, 0);
             this.labelMachineNameDescription.Name = "labelMachineNameDescription";
             this.labelMachineNameDescription.Size = new System.Drawing.Size(122, 30);
-            this.labelMachineNameDescription.TabIndex = 27;
+            this.labelMachineNameDescription.TabIndex = 0;
             this.labelMachineNameDescription.Text = "Machine Name:";
             this.labelMachineNameDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panelExecutionIDBackground
+            // panelExecutionId
             // 
-            this.panelExecutionIDBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelExecutionIDBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelExecutionIDBackground.Controls.Add(this.labelExecutionID);
-            this.panelExecutionIDBackground.Controls.Add(this.labelExecutionIDDescription);
-            this.panelExecutionIDBackground.Location = new System.Drawing.Point(33, 94);
-            this.panelExecutionIDBackground.Name = "panelExecutionIDBackground";
-            this.panelExecutionIDBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelExecutionIDBackground.Size = new System.Drawing.Size(389, 32);
-            this.panelExecutionIDBackground.TabIndex = 32;
+            this.panelExecutionId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelExecutionId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelExecutionId.Controls.Add(this.labelExecutionId);
+            this.panelExecutionId.Controls.Add(this.labelExecutionIdDescription);
+            this.panelExecutionId.Location = new System.Drawing.Point(36, 329);
+            this.panelExecutionId.Name = "panelExecutionId";
+            this.panelExecutionId.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelExecutionId.Size = new System.Drawing.Size(390, 32);
+            this.panelExecutionId.TabIndex = 0;
             // 
-            // labelExecutionID
+            // labelExecutionId
             // 
-            this.labelExecutionID.BackColor = System.Drawing.Color.White;
-            this.labelExecutionID.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelExecutionID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelExecutionID.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelExecutionID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelExecutionID.Location = new System.Drawing.Point(133, 0);
-            this.labelExecutionID.Name = "labelExecutionID";
-            this.labelExecutionID.Size = new System.Drawing.Size(254, 30);
-            this.labelExecutionID.TabIndex = 28;
-            this.labelExecutionID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelExecutionId.BackColor = System.Drawing.Color.White;
+            this.labelExecutionId.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelExecutionId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelExecutionId.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExecutionId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelExecutionId.Location = new System.Drawing.Point(133, 0);
+            this.labelExecutionId.Name = "labelExecutionId";
+            this.labelExecutionId.Size = new System.Drawing.Size(255, 30);
+            this.labelExecutionId.TabIndex = 0;
+            this.labelExecutionId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelExecutionIDDescription
+            // labelExecutionIdDescription
             // 
-            this.labelExecutionIDDescription.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelExecutionIDDescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelExecutionIDDescription.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelExecutionIDDescription.ForeColor = System.Drawing.Color.White;
-            this.labelExecutionIDDescription.Location = new System.Drawing.Point(5, 0);
-            this.labelExecutionIDDescription.Name = "labelExecutionIDDescription";
-            this.labelExecutionIDDescription.Size = new System.Drawing.Size(122, 30);
-            this.labelExecutionIDDescription.TabIndex = 27;
-            this.labelExecutionIDDescription.Text = "Execution ID:";
-            this.labelExecutionIDDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelExecutionIdDescription.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelExecutionIdDescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelExecutionIdDescription.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExecutionIdDescription.ForeColor = System.Drawing.Color.White;
+            this.labelExecutionIdDescription.Location = new System.Drawing.Point(5, 0);
+            this.labelExecutionIdDescription.Name = "labelExecutionIdDescription";
+            this.labelExecutionIdDescription.Size = new System.Drawing.Size(122, 30);
+            this.labelExecutionIdDescription.TabIndex = 0;
+            this.labelExecutionIdDescription.Text = "Execution ID:";
+            this.labelExecutionIdDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panelTotalTestsAvailableBackground
+            // panelTotalTestsAvailable
             // 
-            this.panelTotalTestsAvailableBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelTotalTestsAvailableBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTotalTestsAvailableBackground.Controls.Add(this.labelTotalTestsAvailableCount);
-            this.panelTotalTestsAvailableBackground.Controls.Add(this.labelTotalTestsAvailableDescription);
-            this.panelTotalTestsAvailableBackground.Location = new System.Drawing.Point(451, 132);
-            this.panelTotalTestsAvailableBackground.Name = "panelTotalTestsAvailableBackground";
-            this.panelTotalTestsAvailableBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelTotalTestsAvailableBackground.Size = new System.Drawing.Size(299, 32);
-            this.panelTotalTestsAvailableBackground.TabIndex = 33;
+            this.panelTotalTestsAvailable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelTotalTestsAvailable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTotalTestsAvailable.Controls.Add(this.labelTotalTestsAvailableCount);
+            this.panelTotalTestsAvailable.Controls.Add(this.labelTotalTestsAvailableDescription);
+            this.panelTotalTestsAvailable.Location = new System.Drawing.Point(36, 513);
+            this.panelTotalTestsAvailable.Name = "panelTotalTestsAvailable";
+            this.panelTotalTestsAvailable.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelTotalTestsAvailable.Size = new System.Drawing.Size(299, 32);
+            this.panelTotalTestsAvailable.TabIndex = 0;
             // 
             // labelTotalTestsAvailableCount
             // 
             this.labelTotalTestsAvailableCount.BackColor = System.Drawing.Color.White;
             this.labelTotalTestsAvailableCount.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelTotalTestsAvailableCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelTotalTestsAvailableCount.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalTestsAvailableCount.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalTestsAvailableCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelTotalTestsAvailableCount.Location = new System.Drawing.Point(181, 0);
             this.labelTotalTestsAvailableCount.Name = "labelTotalTestsAvailableCount";
             this.labelTotalTestsAvailableCount.Size = new System.Drawing.Size(116, 30);
-            this.labelTotalTestsAvailableCount.TabIndex = 28;
+            this.labelTotalTestsAvailableCount.TabIndex = 0;
             this.labelTotalTestsAvailableCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTotalTestsAvailableDescription
@@ -577,33 +552,33 @@
             this.labelTotalTestsAvailableDescription.Location = new System.Drawing.Point(5, 0);
             this.labelTotalTestsAvailableDescription.Name = "labelTotalTestsAvailableDescription";
             this.labelTotalTestsAvailableDescription.Size = new System.Drawing.Size(170, 30);
-            this.labelTotalTestsAvailableDescription.TabIndex = 27;
+            this.labelTotalTestsAvailableDescription.TabIndex = 0;
             this.labelTotalTestsAvailableDescription.Text = "Total Tests Available:";
             this.labelTotalTestsAvailableDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panelTotalTestsRanBackground
+            // panelTotalTestsRan
             // 
-            this.panelTotalTestsRanBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelTotalTestsRanBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTotalTestsRanBackground.Controls.Add(this.labelTotalTestsRanCount);
-            this.panelTotalTestsRanBackground.Controls.Add(this.labelTotalTestsRanDescription);
-            this.panelTotalTestsRanBackground.Location = new System.Drawing.Point(451, 94);
-            this.panelTotalTestsRanBackground.Name = "panelTotalTestsRanBackground";
-            this.panelTotalTestsRanBackground.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panelTotalTestsRanBackground.Size = new System.Drawing.Size(299, 32);
-            this.panelTotalTestsRanBackground.TabIndex = 32;
+            this.panelTotalTestsRan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelTotalTestsRan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTotalTestsRan.Controls.Add(this.labelTotalTestsRanCount);
+            this.panelTotalTestsRan.Controls.Add(this.labelTotalTestsRanDescription);
+            this.panelTotalTestsRan.Location = new System.Drawing.Point(36, 475);
+            this.panelTotalTestsRan.Name = "panelTotalTestsRan";
+            this.panelTotalTestsRan.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelTotalTestsRan.Size = new System.Drawing.Size(299, 32);
+            this.panelTotalTestsRan.TabIndex = 0;
             // 
             // labelTotalTestsRanCount
             // 
             this.labelTotalTestsRanCount.BackColor = System.Drawing.Color.White;
             this.labelTotalTestsRanCount.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelTotalTestsRanCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelTotalTestsRanCount.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalTestsRanCount.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalTestsRanCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelTotalTestsRanCount.Location = new System.Drawing.Point(181, 0);
             this.labelTotalTestsRanCount.Name = "labelTotalTestsRanCount";
             this.labelTotalTestsRanCount.Size = new System.Drawing.Size(116, 30);
-            this.labelTotalTestsRanCount.TabIndex = 28;
+            this.labelTotalTestsRanCount.TabIndex = 0;
             this.labelTotalTestsRanCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTotalTestsRanDescription
@@ -615,52 +590,129 @@
             this.labelTotalTestsRanDescription.Location = new System.Drawing.Point(5, 0);
             this.labelTotalTestsRanDescription.Name = "labelTotalTestsRanDescription";
             this.labelTotalTestsRanDescription.Size = new System.Drawing.Size(170, 30);
-            this.labelTotalTestsRanDescription.TabIndex = 27;
+            this.labelTotalTestsRanDescription.TabIndex = 0;
             this.labelTotalTestsRanDescription.Text = "Total Tests Ran:";
             this.labelTotalTestsRanDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // buttonDeleteExecution
+            // 
+            this.buttonDeleteExecution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteExecution.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.buttonDeleteExecution.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonDeleteExecution.FlatAppearance.BorderSize = 2;
+            this.buttonDeleteExecution.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonDeleteExecution.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonDeleteExecution.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteExecution.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeleteExecution.ForeColor = System.Drawing.Color.White;
+            this.buttonDeleteExecution.Location = new System.Drawing.Point(451, 733);
+            this.buttonDeleteExecution.Name = "buttonDeleteExecution";
+            this.buttonDeleteExecution.Size = new System.Drawing.Size(961, 29);
+            this.buttonDeleteExecution.TabIndex = 4;
+            this.buttonDeleteExecution.Text = "Delete Loaded Execution";
+            this.buttonDeleteExecution.UseVisualStyleBackColor = false;
+            this.buttonDeleteExecution.Click += new System.EventHandler(this.action_DeleteLoadedExecution);
+            // 
+            // buttonReloadExecutionIdList
+            // 
+            this.buttonReloadExecutionIdList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.buttonReloadExecutionIdList.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonReloadExecutionIdList.FlatAppearance.BorderSize = 2;
+            this.buttonReloadExecutionIdList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonReloadExecutionIdList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonReloadExecutionIdList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReloadExecutionIdList.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReloadExecutionIdList.ForeColor = System.Drawing.Color.White;
+            this.buttonReloadExecutionIdList.Location = new System.Drawing.Point(552, 33);
+            this.buttonReloadExecutionIdList.Name = "buttonReloadExecutionIdList";
+            this.buttonReloadExecutionIdList.Size = new System.Drawing.Size(170, 29);
+            this.buttonReloadExecutionIdList.TabIndex = 3;
+            this.buttonReloadExecutionIdList.Text = "Reload Execution ID\'s";
+            this.buttonReloadExecutionIdList.UseVisualStyleBackColor = false;
+            this.buttonReloadExecutionIdList.Click += new System.EventHandler(this.action_ReloadExecutionIdList);
+            // 
+            // panelBrowserName
+            // 
+            this.panelBrowserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelBrowserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBrowserName.Controls.Add(this.labelBrowserName);
+            this.panelBrowserName.Controls.Add(this.labelBrowserNameDescription);
+            this.panelBrowserName.Location = new System.Drawing.Point(36, 405);
+            this.panelBrowserName.Name = "panelBrowserName";
+            this.panelBrowserName.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panelBrowserName.Size = new System.Drawing.Size(390, 32);
+            this.panelBrowserName.TabIndex = 1;
+            // 
+            // labelBrowserName
+            // 
+            this.labelBrowserName.BackColor = System.Drawing.Color.White;
+            this.labelBrowserName.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelBrowserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelBrowserName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBrowserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelBrowserName.Location = new System.Drawing.Point(133, 0);
+            this.labelBrowserName.Name = "labelBrowserName";
+            this.labelBrowserName.Size = new System.Drawing.Size(255, 30);
+            this.labelBrowserName.TabIndex = 0;
+            this.labelBrowserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelBrowserNameDescription
+            // 
+            this.labelBrowserNameDescription.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelBrowserNameDescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelBrowserNameDescription.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBrowserNameDescription.ForeColor = System.Drawing.Color.White;
+            this.labelBrowserNameDescription.Location = new System.Drawing.Point(5, 0);
+            this.labelBrowserNameDescription.Name = "labelBrowserNameDescription";
+            this.labelBrowserNameDescription.Size = new System.Drawing.Size(122, 30);
+            this.labelBrowserNameDescription.TabIndex = 0;
+            this.labelBrowserNameDescription.Text = "Browser Name:";
+            this.labelBrowserNameDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ControlDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panelTotalTestsAvailableBackground);
-            this.Controls.Add(this.panelMachineNameBackground);
-            this.Controls.Add(this.panelTotalTestsRanBackground);
-            this.Controls.Add(this.buttonLoadTestCaseDetails);
-            this.Controls.Add(this.panelExecutionIDBackground);
-            this.Controls.Add(this.panelStartTimeBackground);
-            this.Controls.Add(this.panelEndTimeBackground);
-            this.Controls.Add(this.panelStartDateBackground);
-            this.Controls.Add(this.panelEndDateBackground);
+            this.Controls.Add(this.panelBrowserName);
+            this.Controls.Add(this.buttonReloadExecutionIdList);
+            this.Controls.Add(this.buttonDeleteExecution);
+            this.Controls.Add(this.panelTotalTestsAvailable);
+            this.Controls.Add(this.panelStartDate);
+            this.Controls.Add(this.panelEndDate);
+            this.Controls.Add(this.panelMachineName);
+            this.Controls.Add(this.panelEndTime);
+            this.Controls.Add(this.panelTotalTestsRan);
+            this.Controls.Add(this.panelStartTime);
+            this.Controls.Add(this.panelExecutionId);
             this.Controls.Add(this.labelSkippedTests);
             this.Controls.Add(this.gaugeSkippedTests);
             this.Controls.Add(this.labelExecutionTimeOverview);
             this.Controls.Add(this.panelTableBackground);
-            this.Controls.Add(this.labelTotalTestsRan);
             this.Controls.Add(this.labelFailedTests);
             this.Controls.Add(this.labelPassedTests);
-            this.Controls.Add(this.gaugeTotalTests);
             this.Controls.Add(this.gaugeFailedTests);
             this.Controls.Add(this.chartExecutionTime);
             this.Controls.Add(this.gaugePassedTests);
-            this.Controls.Add(this.buttonLoadTestSet);
-            this.Controls.Add(this.dropdownExecutedID);
+            this.Controls.Add(this.buttonLoadExecution);
+            this.Controls.Add(this.dropdownExecutionIds);
             this.Controls.Add(this.labelExecutedTestSetList);
             this.Name = "ControlDashboard";
-            this.Padding = new System.Windows.Forms.Padding(30);
-            this.Size = new System.Drawing.Size(1460, 805);
+            this.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
+            this.Size = new System.Drawing.Size(1435, 785);
             this.Load += new System.EventHandler(this.DashboardControl_Load);
             this.panelTableBackground.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridviewTable)).EndInit();
-            this.panelEndDateBackground.ResumeLayout(false);
-            this.panelEndTimeBackground.ResumeLayout(false);
-            this.panelStartTimeBackground.ResumeLayout(false);
-            this.panelStartDateBackground.ResumeLayout(false);
-            this.panelMachineNameBackground.ResumeLayout(false);
-            this.panelExecutionIDBackground.ResumeLayout(false);
-            this.panelTotalTestsAvailableBackground.ResumeLayout(false);
-            this.panelTotalTestsRanBackground.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridview)).EndInit();
+            this.panelEndDate.ResumeLayout(false);
+            this.panelEndTime.ResumeLayout(false);
+            this.panelStartTime.ResumeLayout(false);
+            this.panelStartDate.ResumeLayout(false);
+            this.panelMachineName.ResumeLayout(false);
+            this.panelExecutionId.ResumeLayout(false);
+            this.panelTotalTestsAvailable.ResumeLayout(false);
+            this.panelTotalTestsRan.ResumeLayout(false);
+            this.panelBrowserName.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -668,45 +720,47 @@
         #endregion
 
         private System.Windows.Forms.Label labelExecutedTestSetList;
-        private MetroFramework.Controls.MetroComboBox dropdownExecutedID;
-        private System.Windows.Forms.Button buttonLoadTestSet;
+        private MetroFramework.Controls.MetroComboBox dropdownExecutionIds;
+        private System.Windows.Forms.Button buttonLoadExecution;
         private LiveCharts.WinForms.SolidGauge gaugePassedTests;
         private LiveCharts.WinForms.CartesianChart chartExecutionTime;
         private LiveCharts.WinForms.SolidGauge gaugeFailedTests;
-        private LiveCharts.WinForms.SolidGauge gaugeTotalTests;
         private System.Windows.Forms.Label labelPassedTests;
         private System.Windows.Forms.Label labelFailedTests;
-        private System.Windows.Forms.Label labelTotalTestsRan;
         private System.Windows.Forms.Panel panelTableBackground;
         private System.Windows.Forms.Label labelExecutedTestsList;
         private System.Windows.Forms.Label labelExecutionTimeOverview;
         private System.Windows.Forms.Label labelSkippedTests;
         private LiveCharts.WinForms.SolidGauge gaugeSkippedTests;
         private System.Windows.Forms.Label labelEndDateDescription;
-        private System.Windows.Forms.Panel panelEndDateBackground;
+        private System.Windows.Forms.Panel panelEndDate;
         private System.Windows.Forms.Label labelEndDate;
-        private System.Windows.Forms.Panel panelEndTimeBackground;
+        private System.Windows.Forms.Panel panelEndTime;
         private System.Windows.Forms.Label labelEndTime;
         private System.Windows.Forms.Label labelEndTimeDescription;
-        private System.Windows.Forms.Panel panelStartTimeBackground;
+        private System.Windows.Forms.Panel panelStartTime;
         private System.Windows.Forms.Label labelStartTime;
         private System.Windows.Forms.Label labelStartTimeDescription;
-        private System.Windows.Forms.Panel panelStartDateBackground;
+        private System.Windows.Forms.Panel panelStartDate;
         private System.Windows.Forms.Label labelStartDate;
         private System.Windows.Forms.Label labelStartDateDescription;
-        private System.Windows.Forms.Button buttonLoadTestCaseDetails;
-        private System.Windows.Forms.Panel panelMachineNameBackground;
+        private System.Windows.Forms.Panel panelMachineName;
         private System.Windows.Forms.Label labelMachineName;
         private System.Windows.Forms.Label labelMachineNameDescription;
-        private System.Windows.Forms.Panel panelExecutionIDBackground;
-        private System.Windows.Forms.Label labelExecutionID;
-        private System.Windows.Forms.Label labelExecutionIDDescription;
-        private MetroFramework.Controls.MetroGrid gridviewTable;
-        private System.Windows.Forms.Panel panelTotalTestsAvailableBackground;
+        private System.Windows.Forms.Panel panelExecutionId;
+        private System.Windows.Forms.Label labelExecutionId;
+        private System.Windows.Forms.Label labelExecutionIdDescription;
+        private System.Windows.Forms.Panel panelTotalTestsAvailable;
         private System.Windows.Forms.Label labelTotalTestsAvailableCount;
         private System.Windows.Forms.Label labelTotalTestsAvailableDescription;
-        private System.Windows.Forms.Panel panelTotalTestsRanBackground;
+        private System.Windows.Forms.Panel panelTotalTestsRan;
         private System.Windows.Forms.Label labelTotalTestsRanCount;
         private System.Windows.Forms.Label labelTotalTestsRanDescription;
+        private System.Windows.Forms.Button buttonDeleteExecution;
+        private System.Windows.Forms.DataGridView gridview;
+        private System.Windows.Forms.Button buttonReloadExecutionIdList;
+        private System.Windows.Forms.Panel panelBrowserName;
+        private System.Windows.Forms.Label labelBrowserName;
+        private System.Windows.Forms.Label labelBrowserNameDescription;
     }
 }

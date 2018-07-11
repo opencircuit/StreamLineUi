@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -13,37 +12,51 @@ namespace StreamLineUi
 {
     internal class Common
     {
-        private XmlWriter xml;
+        //***************************************************************************************************************
+        // Internally Accessible Methods
+        //***************************************************************************************************************
 
-        internal string event_GetCurrentDirectory()
-        {
-            return Path.GetDirectoryName(Application.ExecutablePath); ;
-        }
+
 
         internal string event_GetComputerName()
         {
-            return Environment.MachineName;
+            try { return Environment.MachineName; }
+            catch (Exception ex) { return ex.Message; }
         }
 
         internal void event_CreateDirectory(string directory)
         {
-            try {
-                Directory.CreateDirectory(directory);
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+            try { Directory.CreateDirectory(directory); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        internal void event_ChangeButtonsColor(UserControl userControl, Color color)
+        {
+            foreach (Control control in userControl.Controls) {
+
+                Button button = control as Button;
+                if (button == null) { continue; }
+                event_ChangeButtonColor(button, color);
             }
         }
 
-        internal void event_ExtractEmbeddedResource(string projectName, string fileNameAndExtension, string outputDirectory)
+        internal void event_ChangeButtonColor(Button button, Color color)
+        {
+            button.FlatAppearance.BorderColor = color;
+            button.FlatAppearance.MouseOverBackColor = color;
+            button.FlatAppearance.MouseDownBackColor = color;
+        }
+
+        internal void event_ExtractResource(string resourceName, string outputDirectory)
         {
             try {
 
-                string resourceFile = projectName + ".Resources." + fileNameAndExtension;
+                if (File.Exists(outputDirectory + "\\" + resourceName)) { return; }
+                string resourceFile = "StreamLineUi.Resources." + resourceName;
                 outputDirectory = outputDirectory + "\\";
 
                 Stream inputStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceFile);
-                Stream outputStream = File.Create(outputDirectory + fileNameAndExtension);
+                Stream outputStream = File.Create(outputDirectory + resourceName);
 
                 byte[] buffer = new byte[8192];
                 int bytesRead;
@@ -60,7 +73,33 @@ namespace StreamLineUi
             }
         }
 
-        internal Color event_RetrieveSpecifiedColor(string selectedColor)
+        internal void event_ExtractResource(string resourceName, string newResourceName, string outputDirectory)
+        {
+            try {
+
+                if (File.Exists(outputDirectory + "\\" + newResourceName)) { return; }
+                string resourceFile = "StreamLineUi.Resources." + resourceName;
+                outputDirectory = outputDirectory + "\\";
+
+                Stream inputStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceFile);
+                Stream outputStream = File.Create(outputDirectory + newResourceName);
+
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+
+                while ((bytesRead = inputStream.Read(buffer, 0, buffer.Length)) > 0) {
+                    outputStream.Write(buffer, 0, bytesRead);
+                }
+
+                inputStream.Close();
+                outputStream.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        internal Color event_RetrieveUiColor(string selectedColor)
         {
             Color color;
 
@@ -71,18 +110,44 @@ namespace StreamLineUi
             else if (selectedColor.Equals("Pink")) { color = Color.HotPink; }
             else if (selectedColor.Equals("Crimson")) { color = Color.Crimson; }
             else if (selectedColor.Equals("Teal")) { color = Color.Teal; }
-            else if (selectedColor.Equals("Brown")) { color = Color.Brown; }
-            else { color = Color.Gray; }
+            else { color = Color.DimGray; }
 
             return color;
         }
 
+        internal DatabaseManager event_DatabaseConnector(string scriptName, string databaseType)
+        {
+            DatabaseManager database = null;
+
+            try {
+
+                string scriptsDirectory = Directory.GetCurrentDirectory() + "\\Resources\\Scripts\\";
+                string scriptDirectory = scriptsDirectory + scriptName;
+
+                if (databaseType.Equals("Test")) { database = new DatabaseManager(scriptDirectory + "\\TestCaseData.db"); }
+                else { database = new DatabaseManager(scriptDirectory + "\\TestCaseResults.db"); }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+
+            return database;
+        }
+
         internal XmlNodeList event_LoadXmlPrimaryNodes(string filePath, string nodeName)
         {
-            XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.Load(filePath);
-            XmlElement root = xmlDocument.DocumentElement;
-            XmlNodeList primaryNodes = root.GetElementsByTagName(nodeName);
+            XmlNodeList primaryNodes = null;
+
+            try {
+
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(filePath);
+                XmlElement root = xmlDocument.DocumentElement;
+                primaryNodes = root.GetElementsByTagName(nodeName);
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
 
             return primaryNodes;
         }
@@ -96,13 +161,13 @@ namespace StreamLineUi
 
                 string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
                 fileName = fileName.Replace(".xml", "");
-                fileList.Add(fileName.ToUpper());
+                fileList.Add(fileName);
             }
 
             return fileList;
         }
 
-        internal void event_GenerateXml(Dictionary<string, string> nodesCollection, string filePath, string primaryNode)
+        internal void event_CreateXml(Dictionary<string, string> nodesCollection, string filePath, string primaryNode)
         {
             try {
 
@@ -110,27 +175,34 @@ namespace StreamLineUi
                 xmlSettings.Encoding = Encoding.UTF8;
                 xmlSettings.Indent = true;
 
-                xml = XmlWriter.Create(filePath, xmlSettings);
+                XmlWriter xml = XmlWriter.Create(filePath, xmlSettings);
                 xml.WriteStartDocument();
                 xml.WriteStartElement("Information");
                 xml.WriteStartElement(primaryNode);
 
                 foreach (KeyValuePair<string, string> node in nodesCollection) {
-                    event_CreateXmlNode(node.Key, node.Value);
+                    event_CreateXmlNode(xml, node.Key, node.Value);
                 }
 
                 xml.WriteEndElement();
                 xml.WriteEndElement();
                 xml.WriteEndDocument();
                 xml.Close();
-                xml = null;
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
         }
 
-        private void event_CreateXmlNode(string nodeName, string nodeValue)
+
+
+        //***************************************************************************************************************
+        // Private Methods
+        //***************************************************************************************************************
+
+
+
+        private void event_CreateXmlNode(XmlWriter xml, string nodeName, string nodeValue)
         {
             try {
 
@@ -141,36 +213,6 @@ namespace StreamLineUi
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        internal Process event_CreateJarProcess(string testCaseID)
-        {
-            Process process = new Process();
-
-            try {
-
-                string currentDirectory = event_GetCurrentDirectory();
-                StringBuilder processArgument = new StringBuilder();
-                processArgument.Append("-jar");
-                processArgument.Append(" \"");
-                processArgument.Append(currentDirectory);
-                processArgument.Append("\\StreamLineEngine.jar");
-                processArgument.Append("\" ");
-                processArgument.Append(testCaseID);
-
-                ProcessStartInfo processInfo = new ProcessStartInfo();
-                processInfo.UseShellExecute = true;
-                processInfo.FileName = "java.exe";
-                processInfo.Arguments = processArgument.ToString();
-                processInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-                process.StartInfo = processInfo;
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-
-            return process;
         }
     }
 }

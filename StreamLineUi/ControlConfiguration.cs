@@ -1,63 +1,47 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace StreamLineUi
 {
     public partial class ControlConfiguration : UserControl
     {
-        private Common common = new Common();
         private FormMain formMain;
+        private Common common;
+        private DatabaseManager testDatabase;
+        private DatabaseManager resultsDatabase;
+        private GridviewManager gridviewManager;
+        private delegate void Delegate();
 
-        private Dictionary<string, string> settingsDictionary;
-        private ArrayList testCaseList = new ArrayList();
-        private ArrayList insertQueryList = new ArrayList();
-        private Color uiColor;
-        private DateTime startDateTime;
-        private delegate void noParameterDelegate();
+        private ArrayList testCaseList;
+        private bool executionInProgress;
 
-        private string executionID;
-        private string testCaseID;
-        private bool inProgress;
-        private bool terminateExecution;
-
-        public ControlConfiguration(FormMain formMain, Dictionary<string, string> settingsDictionary)
+        public ControlConfiguration(FormMain formMain)
         {
             InitializeComponent();
             this.formMain = formMain;
-            this.settingsDictionary = settingsDictionary;
+            common = new Common();
+            testDatabase = this.formMain.testDatabase;
+            resultsDatabase = this.formMain.resultDatabase;
+            gridviewManager = new GridviewManager(testDatabase);
+            testCaseList = new ArrayList();
+            executionInProgress = false;
         }
 
         private void action_FormLoad(object sender, EventArgs e)
         {
-            inProgress = false;
-            initialize_ChooseUiColor();
             initialize_ChangeUiColor();
             initialize_ColumnList();
+            initialize_BrowserList();
+            event_LoadAllTestCases();
         }
 
         private void action_ApplyFilter(object sender, EventArgs e)
         {
-            string testDatabaseDirectory = settingsDictionary["TestDatabaseDirectory"];
-            string testDatabasePath = testDatabaseDirectory + "\\TestCaseData.db";
-            string columnName = dropdownColumns.Text;
-
-            if (columnName.Length > 0) {
-
-                string dataValue = textboxDataValue.Text;
-                string queryConditions = "[" + columnName + "] = '" + dataValue + "'";
-                string tableName = "MAIN";
-
-                DatabaseConnector database;
-                database = new DatabaseConnector(testDatabasePath);
-
-                DataTable dataTable;
-                dataTable = database.event_LoadFilteredTable(tableName, queryConditions);
-                gridviewTable.DataSource = dataTable;
-            }
+            if (dropdownColumns.Text.Length == 0) { return; }
+            string queryCondition = "[" + dropdownColumns.Text + "] = '" + textboxDataValue.Text + "'";
+            gridview.DataSource = testDatabase.event_LoadFilteredTable("Main", queryCondition);
         }
 
         private void action_LoadTable(object sender, EventArgs e)
@@ -67,19 +51,7 @@ namespace StreamLineUi
 
         private void action_RemoveSelections(object sender, EventArgs e)
         {
-            event_RemoveSelectedTestCasesFromList();
-            string queryCondition = event_GenerateTableFilterQueryConditions();
-            string tableName = "MAIN";
-
-            string testDatabaseDirectory = settingsDictionary["TestDatabaseDirectory"];
-            string testDatabasePath = testDatabaseDirectory + "\\TestCaseData.db";
-
-            DatabaseConnector database;
-            database = new DatabaseConnector(testDatabasePath);
-
-            DataTable dataTable;
-            dataTable = database.event_LoadFilteredTable(tableName, queryCondition);
-            gridviewTable.DataSource = dataTable;
+            gridviewManager.event_DeleteRows(gridview);
         }
 
         private void action_ClearFilter(object sender, EventArgs e)
@@ -89,42 +61,19 @@ namespace StreamLineUi
 
         private void action_DebugModeChanged(object sender, EventArgs e)
         {
-            if (checkboxDebugMode.Checked) {
-                labelDebugModeDescription.Visible = true;
-            }
-            else {
-                labelDebugModeDescription.Visible = false;
-            }
+            labelDebugModeDescription.Visible = checkboxDebugMode.Checked;
         }
 
         private void action_StartExecution(object sender, EventArgs e)
         {
-            if (gridviewTable.Rows.Count == 0) { return; }
-            bool debugMode = checkboxDebugMode.Checked;
-            testCaseList.Clear();
-            insertQueryList.Clear();
-            event_ExecutionInProgress();
-            event_ExecutionInProgress();
-
-            if (!debugMode) {
-
-                executionID = event_GenerateExecutionId();
-                event_GenerateMainTableInsertQueries();
-                event_GenerateExecutionTableInsertQuery();
-                event_GenerateExecutionDirectory();
-                event_InsertQueriesIntoResultsDatabase();
-            }
-            else {
-                event_RetrieveSelectedTestCaseId();
-            }
-
-            event_GenerateExecutionInformationXml();
-            event_InitiateTestCasesExecution(testCaseList);
+            event_InitializeExecutionSetup();
+            event_EnableControls();
+            event_StartExecution();
         }
 
         private void action_StopExecution(object sender, EventArgs e)
         {
-            event_ExecutionComplete();
+            executionInProgress = false;
         }
     }
 }

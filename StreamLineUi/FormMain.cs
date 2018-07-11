@@ -2,137 +2,130 @@
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StreamLineUi
 {
     public partial class FormMain : MaterialForm
     {
-        private Common common = new Common();
+        private MaterialSkinManager materialSkinManager;
         private ControlDashboard dashboard;
-        private ControlScriptBuilder scriptBuilder;
+        private ControlScriptEditor scriptEditor;
+        private ControlComponentEditor componentEditor;
+        private ControlDataGenerator dataGenerator;
         private ControlDataEditor dataEditor;
+        private ControlDatabaseEditor databaseEditor;
         private ControlConfiguration configuration;
         private ControlSettings settings;
+        private Common common;
 
-        private Dictionary<string, string> settingsDictionary;
-        private Color uiColor;
-
-        private string currentViewName;
+        internal DatabaseManager testDatabase;
+        internal DatabaseManager resultDatabase;
+        internal Dictionary<string, string> settingsInfo;
 
         public FormMain()
         {
             InitializeComponent();
 
             // Create a material theme manager and add the form to manage (this)
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ROBOTO_MEDIUM_10 = new Font("Century Gothic", 10);
+            materialSkinManager.ROBOTO_MEDIUM_11 = new Font("Century Gothic", 10);
+            materialSkinManager.ROBOTO_MEDIUM_12 = new Font("Century Gothic", 10);
+            materialSkinManager.ROBOTO_REGULAR_11 = new Font("Century Gothic", 10);
 
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Grey800, Primary.Grey800,
-                Primary.Grey800, Accent.LightBlue200,
-                TextShade.WHITE
-            );
+            common = new Common();
+            testDatabase = null;
+            resultDatabase = null;
         }
 
         private void action_FormLoad(object sender, EventArgs e)
         {
-            initialize_CreatePrimaryDirectories();
-            initialize_GenerateDefaultSettingsXml();
-            initialize_LoadSettings();
-            initialize_CreateSettingsDirectories();
-            initialize_VerifyResourcesExist();
-
-            string selectedColor = settingsDictionary["UiColor"];
-            initialize_ChangeUiColor(selectedColor);
-
-            labelComputerName.Text = common.event_GetComputerName();
-            currentViewName = "";
+            event_ChangeUiColor("Gray");
+            initialize_UserComputerName();
+            initialize_SettingsControl();
+            event_EnablePartialControlButtons(false);
+            event_SetButtonText();
         }
 
         private void action_ViewDashboard(object sender, EventArgs e)
         {
-            bool switchView = event_ProgressCheck();
-
-            if (switchView) {
-
-                event_ResetForm();
-                dashboard = new ControlDashboard(settingsDictionary);
-                panelControlBackground.Controls.Add(dashboard);
-                event_ResetForm();
-                panelControlBackground.Controls.Add(dashboard);
-                dashboard.Dock = DockStyle.Fill;
-                buttonDashboard.BackColor = uiColor;
-                currentViewName = "Dashboard";
-            }
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(dashboard);
+            dashboard.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonDashboard);
         }
 
-        private void action_ViewScriptBuilder(object sender, EventArgs e)
+        private void action_ViewScriptEditor(object sender, EventArgs e)
         {
-            bool switchView = event_ProgressCheck();
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(scriptEditor);
+            scriptEditor.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonScriptEditor);
+        }
 
-            if (switchView) {
+        private void action_ViewComponentEditor(object sender, EventArgs e)
+        {
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(componentEditor);
+            componentEditor.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonComponentBuilder);
+        }
 
-                event_ResetForm();
-                scriptBuilder = new ControlScriptBuilder(settingsDictionary);
-                panelControlBackground.Controls.Add(scriptBuilder);
-                scriptBuilder.Dock = DockStyle.Fill;
-                buttonScriptBuilder.BackColor = uiColor;
-                currentViewName = "ScriptBuilder";
-            }
+        private void action_ViewDataGenerator(object sender, EventArgs e)
+        {
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(dataGenerator);
+            dataGenerator.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonDataGenerator);
         }
 
         private void action_ViewDataEditor(object sender, EventArgs e)
         {
-            bool switchView = event_ProgressCheck();
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(dataEditor);
+            dataEditor.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonDataEditor);
+        }
 
-            if (switchView) {
-
-                event_ResetForm();
-                dataEditor = new ControlDataEditor(settingsDictionary);
-                panelControlBackground.Controls.Add(dataEditor);
-                dataEditor.Dock = DockStyle.Fill;
-                buttonDataEditor.BackColor = uiColor;
-                currentViewName = "DataEditor";
-            }
+        private void action_ViewDatabaseEditor(object sender, EventArgs e)
+        {
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(databaseEditor);
+            databaseEditor.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonDatabaseEditor);
         }
 
         private void action_ViewConfiguration(object sender, EventArgs e)
         {
-            bool switchView = event_ProgressCheck();
-
-            if (switchView) {
-
-                event_ResetForm();
-                configuration = new ControlConfiguration(this, settingsDictionary);
-                panelControlBackground.Controls.Add(configuration);
-                configuration.Dock = DockStyle.Fill;
-                buttonConfiguration.BackColor = uiColor;
-                currentViewName = "Configuration";
-            }
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(configuration);
+            configuration.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonConfiguration);
         }
 
         private void action_ViewSettings(object sender, EventArgs e)
         {
-            bool switchView = event_ProgressCheck();
-
-            if (switchView) {
-
-                event_ResetForm();
-                settings = new ControlSettings(this, settingsDictionary);
-                panelControlBackground.Controls.Add(settings);
-                settings.Dock = DockStyle.Fill;
-                buttonSettings.BackColor = uiColor;
-                currentViewName = "Settings";
-            }
+            panelControlBackground.Controls.Clear();
+            panelControlBackground.Controls.Add(settings);
+            settings.Dock = DockStyle.Fill;
+            event_SetButtonBackColor(buttonSettings);
         }
+
+        private void action_SlimNavigation(object sender, EventArgs e)
+        {
+            int width;
+            if (toggle.Checked) { width = 50; event_EmptyButtonText(); }
+            else { width = 150; event_SetButtonText(); }
+            labelComputerName.Visible = !toggle.Checked;
+            labelNavigationToggleDescription.Visible = !toggle.Checked;
+
+            panelNavigationBackground.Size = new Size(width, panelNavigationBackground.Height);
+        }
+
+        private int event_RetrieveNavigate
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Steps>
+  <Step id="1">
+    <Operation>Windows - iFrames</Operation>
+    <Action>Navigate To URL</Action>
+    <OptionalStep>No</OptionalStep>
+    <ElementName></ElementName>
+    <IdentifierType></IdentifierType>
+    <IdentifierValue></IdentifierValue>
+    <WaitTime></WaitTime>
+    <TestDataTable></TestDataTable>
+    <TestDataColumn></TestDataColumn>
+    <StaticDataValue>https://opencircuit.github.io</StaticDataValue>
+    <ConditionDataTable></ConditionDataTable>
+    <ConditionDataColumn></ConditionDataColumn>
+    <ConditionDataValue></ConditionDataValue>
+  </Step>
+</Steps>

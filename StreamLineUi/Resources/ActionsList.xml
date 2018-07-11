@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Operations>
+
+	<Operation value="Windows">
+
+		<Action value="Navigate To URL">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Navigates to the specified URL address. Make sure the URL starts with either Http:// or Https://</ActionDescription>
+		</Action>
+
+		<Action value="Switch To Window">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switches to a window with the specified title. Partial title is also acceptable if it is enough to distinguish it from other window titles.</ActionDescription>
+		</Action>
+
+		<Action value="Close Window">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Closes the specified window based on its title. Partial title is also acceptable if it is enough to distinguish it from other window titles.</ActionDescription>
+		</Action>
+
+	</Operation>
+	
+	<Operation value="iFrames">
+		
+		<Action value="Switch To iFrame By Name">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switches to a iFrame based on the specified frame name provided.</ActionDescription>
+		</Action>
+		
+		<Action value="Switch To iFrame By Index">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switches to a iFrame based on the specified frame index provided.</ActionDescription>
+		</Action>
+		
+		<Action value="Switch To Default Content">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switches to the default (first) frame set or to the main page if there are iFrames present.</ActionDescription>
+		</Action>
+
+	</Operation>
+
+	<Operation value="Textbox">
+
+		<Action value="Type Text">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Types text into the specified textbox.</ActionDescription>
+		</Action>
+
+		<Action value="Clear Text">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Clears any text out of the specified textbox.</ActionDescription>
+		</Action>
+
+		<Action value="Match Text In Textbox">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Matches the specified data value against the text found in the textbox (character casing does not matter).</ActionDescription>
+		</Action>
+
+	</Operation>
+
+	<Operation value="Dropdown">
+
+		<Action value="Select Dropdown Value By Visible Text">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Selects an option from the dropdown based on the option's visible text match (character casing does not matter).</ActionDescription>
+		</Action>
+
+		<Action value="Select Dropdown Value">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Selects an option from the dropdown based on the option's coded value match (character casing does not matter).</ActionDescription>
+		</Action>
+
+		<Action value="Select Dropdown Value By Index">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Selects an option from the dropdown based on the option's index number (indext starts at 1).</ActionDescription>
+		</Action>
+
+	</Operation>
+	
+	<Operation value = "Radio Button">
+	
+		<Action value="Select Radio Button By Value">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Selects the option with the matching value from the radio button group.</ActionDescription>
+		</Action>
+		
+		<Action value="Select Radio Button By Index">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Selects the option with the specified index from the radio button group.</ActionDescription>
+		</Action>
+		
+	</Operation>
+
+	<Operation value="WebElement">
+
+		<Action value="Click Element">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Finds and clicks on the specified web element.</ActionDescription>
+		</Action>
+
+		<Action value="Match Text In Element">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Matches the specified data value against the text found between the elements opening and closing tags (character casing does not matter). Set the wait time before the step fails.</ActionDescription>
+		</Action>
+
+		<Action value="Verify Element Is Displayed">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Checks to ensure the specified web element is displayed. Set the wait time before the step fails.</ActionDescription>
+		</Action>
+
+		<Action value="Verify Element Is Enabled">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Checks to ensure the specified web element is enabled. Set the wait time before the step fails.</ActionDescription>
+		</Action>
+
+		<Action value="Verify Element Is Selected"> 
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Checks to ensure the specified web element is selected. Set the wait time before the step fails.</ActionDescription>
+		</Action>
+
+		<Action value="Verify Element Is NOT Displayed">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Checks to ensure the specified web element is not displayed.</ActionDescription>
+		</Action>
+
+		<Action value="Verify Element Is NOT Enabled">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Checks to ensure the specified web element is not enabled.</ActionDescription>
+		</Action>
+
+		<Action value="Verify Element Is NOT Selected">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Checks to ensure the specified web element is not selected.</ActionDescription>
+		</Action>
+
+	</Operation>
+
+	<Operation value="WebPage">
+
+		<Action value="Verify Page Loading Is Complete">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Waits for the page load status to be set to complete via JavaScript's document ready method call. Set the wait time before the step fails. If possible use the 'Verify Element Is Displayed' action instead.</ActionDescription>
+		</Action>
+
+		<Action value="Find Text Displayed On Page">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Looks for the specified text to be displayed on the page. Set the wait time before the step fails.</ActionDescription>
+		</Action>
+
+		<Action value="Take Screenshot">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Takes a screenshot of the current page and names it based on the data value provided. If no name is provided then the current date time stamp will be used as the name of the screenshot.</ActionDescription>
+		</Action>
+
+	</Operation>
+
+	<Operation value="Alert">
+
+		<Action value="Accept Alert">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switch to the alert window, accepts it and then switch back to the parent window.</ActionDescription>
+		</Action>
+
+		<Action value="Decline Alert">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switch to the alert window, declines it and then switch back to the parent window.</ActionDescription>
+		</Action>
+
+		<Action value="Match Alert Text">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>Yes</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Switch to the alert window and match the alert text against the provided data value (character casing does not matter).</ActionDescription>
+		</Action>
+
+	</Operation>
+
+	<Operation value="KeyPress">
+
+		<Action value="Press Enter">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Enter' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Tab">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Tab' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Shift">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Shift' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Space">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Space' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Backspace">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Backspace' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Pause">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Pause' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Insert">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Insert' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Home">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Home' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Delete">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Delete' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press End">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'End' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+		<Action value="Press Escape">
+			<Optional>Yes</Optional>
+			<ElementName>Yes</ElementName>
+			<IdentifierType>Yes</IdentifierType>
+			<IdentifierValue>Yes</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Simulates the 'Escape' key press from the keyboard on the specified element.</ActionDescription>
+		</Action>
+
+	</Operation>
+
+	<Operation value="Wait">
+
+		<Action value="Wait For X Seconds">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Pause the test for the specified number of seconds.</ActionDescription>
+		</Action>
+
+		<Action value="Wait For X Milliseconds">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>Yes</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>No</DataTable>
+			<DataColumn>No</DataColumn>
+			<DataValue>No</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Pause the test for the specified number of milliseconds.</ActionDescription>
+		</Action>
+
+	</Operation>
+	
+	<Operation value="Data">
+
+		<Action value="Update Table Column">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>Yes</DataTable>
+			<DataColumn>Yes</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Update the specified run-time table column with the static data value.</ActionDescription>
+		</Action>
+
+		<Action value="Compare Data Values">
+			<Optional>Yes</Optional>
+			<ElementName>No</ElementName>
+			<IdentifierType>No</IdentifierType>
+			<IdentifierValue>No</IdentifierValue>
+			<WaitTime>No</WaitTime>
+			<UseDatabase>No</UseDatabase>
+			<DataTable>Yes</DataTable>
+			<DataColumn>Yes</DataColumn>
+			<DataValue>Yes</DataValue>
+			<ApplyCondition>Yes</ApplyCondition>
+			<ConditionTable>No</ConditionTable>
+			<ConditionColumn>No</ConditionColumn>
+			<ConditionValue>No</ConditionValue>
+			<ActionDescription>Compare the static data value with the value retrieved from the specified table column</ActionDescription>
+		</Action>
+
+	</Operation>
+
+</Operations>

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Drawing;
-using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
 
@@ -9,82 +7,90 @@ namespace StreamLineUi
 {
     public partial class ControlDashboard : UserControl
     {
-        private Common common = new Common();
-        private DatabaseConnector database;
-
-        private Dictionary<string, string> settingsDictionary;
-        private Color uiColor;
+        private FormMain formMain;
+        private Common common;
+        private DatabaseManager database;
+        private GridviewManager gridviewManager;
 
         private int countPassedTests;
         private int countFailedTests;
         private int countSkippedTests;
-        private int countTotalTestsRan;
-        private int countTotalTests;
+        private int countTestsRan;
 
-        public ControlDashboard(Dictionary<string, string> settingsDictionary)
+        public ControlDashboard(FormMain formMain)
         {
             InitializeComponent();
-            this.settingsDictionary = settingsDictionary;
+            this.formMain = formMain;
+            common = new Common();
+            database = this.formMain.resultDatabase;
+            gridviewManager = new GridviewManager(database);
         }
 
         private void DashboardControl_Load(object sender, EventArgs e)
         {
-            string databaseDirectory = settingsDictionary["ResultsDatabaseDirectory"];
-            string databasePath = databaseDirectory + "\\TestCaseResults.db";
-            database = new DatabaseConnector(databasePath);
-
-            initialize_ChooseUiColor();
             initialize_ChangeUiColor();
-            initialize_GaugeControls();
-            initialize_TestExecutionIds();
+            initialize_GuageAndChartBackColor();
+            initialize_GaugeSettings();
+            initialize_GaugeColors();
+            event_TestExecutionIds();
         }
 
-        private void action_LoadSelectedExecutionDetails(object sender, EventArgs e)
+        private void action_LoadExecution(object sender, EventArgs e)
         {
-            string executionID = dropdownExecutedID.Text;
+            string executionID = dropdownExecutionIds.Text;
+            if (executionID.Length == 0) { return; }
 
-            if (executionID.Length > 0) {
+            labelExecutionId.Text = executionID;
+            event_ResetStatusCount();
+            event_LoadMainTableData(executionID);
+            event_LoadExecutionDetails(executionID);
+            event_LoadStatusCount();
+            event_SetTestCasesPassedGauge();
+            event_SetTestCasesFailedGauge();
+            event_SetTestCasesSkippedGauge();
+            event_SetTestCasesExecutionTimeChart();
+        }
 
-                labelExecutionID.Text = executionID;
-                event_ResetStatusCount();
-                event_LoadMainTableData(executionID);
-                event_LoadExecutionDetails(executionID);
-                event_LoadStatusCount();
-                event_SetTestCasesPassedGauge();
-                event_SetTestCasesFailedGauge();
-                event_SetTestCasesSkippedGauge();
-                event_SetTestCasesTotalGauge();
-                event_SetTestCasesExecutionTimeChart();
-            }
+        private void action_ReloadExecutionIdList(object sender, EventArgs e)
+        {
+            event_TestExecutionIds();
+        }
+
+        private void action_DeleteLoadedExecution(object sender, EventArgs e)
+        {
+            string executionID = labelExecutionId.Text;
+            if (executionID.Length == 0) { return; }
+
+            string mainDeleteQuery = "DELETE FROM [Main] WHERE [Execution_ID] = '" + executionID + "'";
+            string executionDeleteQuery = "DELETE FROM [Execution] WHERE [Execution_ID] = '" + executionID + "'";
+
+            database.event_ExecuteNonSelectQuery(mainDeleteQuery);
+            database.event_ExecuteNonSelectQuery(executionDeleteQuery);
+            event_TestExecutionIds();
         }
 
         private void action_LoadDetailedReport(object sender, EventArgs e)
         {
-            try {
+            int columnIndex = gridview.Columns.IndexOf(gridview.Columns["Results_Location"]);
+            string filePath = gridview.SelectedRows[0].Cells[columnIndex].Value.ToString();
 
-                string errorMessage = "The detailed report for this test case execution cannot be found.";
-                int columnIndex = gridviewTable.Columns.IndexOf(gridviewTable.Columns["RESULTS_LOCATION"]);
-                DataGridViewRow gridRow = gridviewTable.SelectedRows[0];
+            if (File.Exists(filePath)) { Process.Start(filePath); }
+            else { MessageBox.Show("The detailed report for this test case execution cannot be found."); }
+        }
 
-                var file = gridRow.Cells[columnIndex].Value;
+        private void action_LaunchHtmlReport(object sender, EventArgs e)
+        {
+            if (gridview.Rows.Count == 0) { return; }
 
-                if (file == null) {
-                    MessageBox.Show(errorMessage);
-                    return;
-                }
+            DataGridViewRow row = gridview.SelectedRows[0];
+            int columnIndex = gridview.Columns["Results_Location"].Index;
+            string filePath = gridviewManager
+                .event_RetrieveCellDataValue
+                (gridview.SelectedRows[0],
+                gridview.Columns["Results_Location"].Index);
 
-                string filePath = gridRow.Cells[columnIndex].Value.ToString();
-
-                if (File.Exists(filePath)) {
-                    Process.Start(filePath);
-                }
-                else {
-                    MessageBox.Show(errorMessage);
-                }
-
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
+            if (File.Exists(filePath)) { Process.Start(filePath); }
+            else { MessageBox.Show("HTML results file could not be found."); }            
         }
     }
 }

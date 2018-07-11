@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections;
-using System.Data;
+using System.Drawing;
 
 namespace StreamLineUi
 {
@@ -9,195 +9,73 @@ namespace StreamLineUi
 
     public partial class ControlDataEditor : UserControl
     {
-        private void initialize_ChooseUiColor()
-        {
-            string selectedColor = settingsDictionary["UiColor"];
-            uiColor = common.event_RetrieveSpecifiedColor(selectedColor);
-        }
+        //***************************************************************************************************************
+        // Initial Setup Methods
+        //***************************************************************************************************************
+
+
 
         private void initialize_ChangeUiColor()
         {
-            buttonLoadTable.BackColor = uiColor;
-            buttonCreateTable.BackColor = uiColor;
-            buttonDeleteTable.BackColor = uiColor;
-            buttonEditTable.BackColor = uiColor;
-            buttonSaveTable.BackColor = uiColor;
-            buttonDeleteTestCase.BackColor = uiColor;
-            buttonAddColumn.BackColor = uiColor;
-            buttonDeleteColumn.BackColor = uiColor;
-            gridviewTable.DefaultCellStyle.SelectionBackColor = uiColor;
+            Color color = common.event_RetrieveUiColor(formMain.settingsInfo["UiColor"]);
+            gridview.DefaultCellStyle.SelectionBackColor = color;
+            common.event_ChangeButtonsColor(this, color);
         }
 
-        private void initialize_DatabaseMapping()
+
+
+        //***************************************************************************************************************
+        // Action Events Handler Methods
+        //***************************************************************************************************************
+
+
+
+        private void event_LoadTableList()
         {
-            try {
-
-                tableList = database.event_RetrieveTableList();
-                tableList.Remove("");
-                initialize_TableSchemaAnalysis();
-
-                foreach (string tableName in tableList) {
-                    dropdownTableList.Items.Add(tableName);
-                }
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void initialize_TableSchemaAnalysis()
-        {
-            ArrayList blankList = new ArrayList();
-            blankList.Add("");
-
-            tableColumnDictionary.Add("", blankList);
-
-            for (int tableIndex = 1; tableIndex < tableList.Count; tableIndex++) {
-
-                string tableName = (string)tableList[tableIndex];
-
-                ArrayList columnList = new ArrayList();
-                columnList = database.event_RetrieveColumnList(tableName);
-                columnList.Remove("");
-
-                tableColumnDictionary.Add(tableName, columnList);
-            }
-        }
-
-        private void event_EnableModificationControls(bool isEnabled)
-        {
-            dropdownTableList.Enabled = isEnabled;
-            buttonLoadTable.Enabled = isEnabled;
-            buttonCreateTable.Enabled = isEnabled;
-            buttonDeleteTable.Enabled = isEnabled;
-            buttonEditTable.Enabled = isEnabled;
-            buttonSaveTable.Enabled = !isEnabled;
-            buttonDeleteTestCase.Enabled = isEnabled;
-
-            textboxColumnName.Text = "";
-            textboxColumnName.Enabled = isEnabled;
-            buttonAddColumn.Enabled = isEnabled;
-            buttonDeleteColumn.Enabled = isEnabled;
-
-            gridviewTable.ReadOnly = isEnabled;
+            dropdownTableList.DataSource = database.event_RetrieveTableList();
         }
 
         private void event_LoadTable(string tableName)
         {
-            DataTable dataTable;
-            dataTable = database.event_LoadTable(tableName);
-
-            gridviewTable.DataSource = dataTable;
-            event_EnableModificationControls(true);
+            string query = "SELECT * FROM [" + tableName + "]";
+            gridview.DataSource = database.event_LoadTable(query);
+            gridview.Columns["Test_Case_ID"].ReadOnly = true;
+            gridview.Columns["Test_Case_ID"].Frozen = true;
         }
 
-        private void event_GenerateNewTable(string tableName)
+        private string event_RetrieveLoadedTableName()
         {
-            try {
+            string tableName;
 
-                if (!dropdownTableList.Items.Contains(tableName)) {
+            try { tableName = labelTableName.Text.Substring(7); }
+            catch (Exception ex) { tableName = String.Empty; }
 
-                    database.event_CreateTable(tableName);
-                    ArrayList columnList = new ArrayList();
-                    columnList.Add("TEST_CASE_ID");
-                    dropdownTableList.Items.Add(tableName);
-                    tableColumnDictionary.Add(tableName, columnList);
-                }
-                else {
-                    MessageBox.Show("Table with this name already exists in the database.");
-                }
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
+            return tableName;
         }
 
-        private void event_DeleteExistingTable(string tableName)
+        private void event_DeleteEachSeletedTestCases()
         {
-            try {
+            int columnIndex = gridview.Columns["TEST_CASE_ID"].Index;
+            ArrayList tableList = database.event_RetrieveTableList();
 
-                if (tableName.Equals("MAIN")) {
-                    MessageBox.Show("The 'Main' table cannot be deleted.");
-                    return;
-                }
+            foreach (DataGridViewRow row in gridview.SelectedRows) {
 
-                if (!dropdownTableList.Items.Contains(tableName)) {
-
-                    database.event_DeleteTable(tableName);
-                    dropdownTableList.Items.Remove(tableName);
-                    tableColumnDictionary.Remove(tableName);
-                }
-                else {
-                    MessageBox.Show("Table does not exist in the database.");
-                }
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                string testCaseID = gridviewManager.event_RetrieveCellDataValue(row, columnIndex);
+                if (testCaseID.Length == 0) { continue; }
+                if (testCaseID.ToLower().Equals("default")) { continue; }
+                event_DeleteTestCaseFromAllTables(tableList, testCaseID); 
             }
         }
 
-        private void event_ModifyTableColumns(string tableName, string columnName, string action)
+        private void event_DeleteTestCaseFromAllTables(ArrayList tableList, string testCaseID)
         {
-            try {
+            foreach (string tableName in tableList) {
 
-                ArrayList columnList = tableColumnDictionary[tableName];
-
-                if (action.Equals("Add")) {
-                    
-                    database.event_AddColumn(tableName, columnName);
-                    columnList.Add(columnName);
-                }
-                else if (action.Equals("Delete")) {
-
-                    bool isValidModification = event_ValidateColumnModification(columnName);
-                    if (!isValidModification) { return; }
-                    database.event_DeleteColumn(tableName, columnName, columnList);
-                    columnList.Remove(columnName);
-                }
-
-                tableColumnDictionary[tableName] = columnList;
-                event_LoadTable(tableName);
+                string query = "DELETE FROM [" + tableName + "] WHERE [TEST_CASE_ID] = '" + testCaseID + "'";
+                database.event_ExecuteNonSelectQuery(query);
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
+
+            MessageBox.Show("Test Case Deleted: " + testCaseID);
         }
-
-        private bool event_ValidateColumnModification(string columnName)
-        {
-            bool isValidModification = true;
-
-            string message = "The column '" + columnName + "' cannot be deleted.";
-
-            switch (columnName) {
-
-                case "TEST_CASE_ID":
-                    isValidModification = false;
-                    break;
-
-                case "TEST_NAME":
-                    isValidModification = false;
-                    break;
-
-                case "TEST_TYPE":
-                    isValidModification = false;
-                    break;
-
-                case "SCRIPT_NAME":
-                    isValidModification = false;
-                    break;
-
-                default:
-                    break;
-            }
-
-            if (!isValidModification) {
-                MessageBox.Show(message);
-            }
-
-            return isValidModification;
-        }
-
-        public bool event_InProgress { get => inProgress; }
     }
 }
